@@ -12,9 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('userr', function (Blueprint $table) {
-            $table->id('id_user');
-            $table->string('nama_user');
-            $table->string('password');
+            $table->id("id_user");
+            $table->string("nama_user");
+            $table->string("password"); 
+            $table->string("email")->unique(); 
+            $table->integer("telepon"); 
             $table->foreignId('id_role')->constrained('role','id_role');
             $table->foreignId('id_gudang')->constrained('gudang','id_gudang');
             $table->timestamps();

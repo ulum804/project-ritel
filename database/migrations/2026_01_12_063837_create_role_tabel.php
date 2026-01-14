@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('stok', function (Blueprint $table) {
-            $table->id('id_stok');
-            $table->string('qty_stok');
-            $table->foreignId('id_barang')->constrained('barang','id_barang');
-            $table->foreignId('id_gudang')->constrained('gudang','id_gudang');
+        Schema::create('role_tabel', function (Blueprint $table) {
+            $table->id();
             $table->timestamps();
         });
     }
@@ -25,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('stok');
+        Schema::dropIfExists('role_tabel');
     }
 };

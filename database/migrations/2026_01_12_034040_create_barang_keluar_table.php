@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('keluar', function (Blueprint $table) {
-            $table->id('id_keluar');
-            $table->string('qty_keluar');
-            $table->enum('status_keluar', ['pending', 'setuju', 'tolak']);
+        Schema::create('barang_keluar', function (Blueprint $table) {
+            $table->id('id_barang_keluar');
+            $table->dateTime('tanggal_keluar_in');
+            $table->dateTime('tanggal_keluar_approve')->nullable();
+            $table->enum('status_keluar', ['pending', 'setuju', 'tolak'])->default('pending');
             $table->foreignId('id_barang')->constrained('barang','id_barang');
             $table->foreignId('id_gudang')->constrained('gudang','id_gudang');
             $table->foreignId('id_user')->constrained('userr','id_user');
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('keluar');
+        Schema::dropIfExists('barang_keluar');
     }
 };
