@@ -1,0 +1,26 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+}
+
+input::placeholder {
+  font-size: 0.95rem;
+}
+
+.btn-primary {
+  font-weight: 500;
+}
+
+.bg-primary {
+  background-color: #0088FF !important;
+    border-top-left-radius: 150px;
+    border-bottom-left-radius: 150px;
+}
+
+.input-group-text {
+  background-color: #f0f0f0;
+  border-right: none;
+}
+
+.input-group .form-control {
+  border-left: none;
+}

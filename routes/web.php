@@ -9,6 +9,9 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('login.login');
 });
-Route::get('/registrasi', function () {
+Route::get('/regis', function () {
     return view('login.registrasi');
+});
+Route::get('/staff/dashboard', function () {
+    return view('staff.dashboard');
 });
