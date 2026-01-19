@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 // });
 
 Route::get('/', function () {
+
     return view('login.login');
 });
 Route::get('/register', function () {
@@ -16,24 +17,7 @@ Route::get('/register', function () {
 Route::get('/staff/dashboard', function () {
     return view('staff.dashboard');
 });
-Route::get('/kepala/dashboard', function () {
-    return view('kepala.dashboard');
-});
-Route::get('/kepala/dashboard', function () {
-    return view('kepala.dashboard');
-});
-Route::get('/kepala/wire1', function () {
-    return view('kepala.wire1');
-});
-Route::get('/kepala/wire2', function () {
-    return view('kepala.wire2');
-});
-Route::get('/kepala/wire3', function () {
-    return view('kepala.wire3');
-});
-Route::get('/kepala/wire4', function () {
-    return view('kepala.wire4');
-});
+
 
 Route::get('/register', [UserController::class, 'create'])
     ->name('register');
@@ -50,6 +34,26 @@ Route::get('staff/dashboard', function() {
     return view('staff.dashboard');
 })->middleware('auth.check'); // nanti bisa buat middleware auth
 
-Route::get('/kepala/dashboard', function () {
-    return view('kepala.dashboard');
-})->middleware('auth.check');
+// Route::get('/kepala/dashboard', function () {
+//     return view('kepala.dashboard');
+// })->middleware('auth.check');
+//     return view('warehouse.warehouse-1');
+// });
+Route::get('/kepala', function () {
+    return view('warehouse.kepala-gudang');
+});
+Route::get('/warehouse-1', function () {
+    return view('warehouse.warehouse-1');
+})->name('warehouse.1');
+
+Route::get('/warehouse-2', function () {
+    return view('warehouse.warehouse-2');
+})->name('warehouse.2');
+
+Route::get('/warehouse-3', function () {
+    return view('warehouse.warehouse-3');
+})->name('warehouse.3');
+
+Route::get('/warehouse-4', function () {
+    return view('warehouse.warehouse-4');
+})->name('warehouse.4');
