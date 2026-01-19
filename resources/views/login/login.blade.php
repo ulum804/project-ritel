@@ -23,7 +23,7 @@
             <div class="text-center text-white">
                 <h2 class="fw-bold">Hello, Welcome!</h2>
                 <p class="mt-2">Don't have an account</p>
-                <a href="" class="btn btn-outline-light rounded-pill px-4">
+                <a href="{{'/register'}}" class="btn btn-outline-light rounded-pill px-4">
                     Registration
                 </a>
             </div>
@@ -35,26 +35,26 @@
 
                 <h3 class="text-center fw-bold mb-4">Login</h3>
 
-                <form method="" action="">
+                <form  method="POST" action="{{ route('login.store') }}">
                     @csrf
-
                     <div class="mb-3">
-                        <input type="text" name="username"
+                        <input type="text" name="nama_user"
                                class="form-control form-control-lg"
-                               placeholder="Username">
+                               placeholder="Username" value="{{ old('nama_user') }}">
+                           @error('nama_user')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                     </div>
 
                     <div class="mb-2">
                         <input type="password" name="password"
                                class="form-control form-control-lg"
                                placeholder="Password">
+                            @error('password')
+                                  <span class="text-danger">{{ $message }}</span>
+                            @enderror
                     </div>
 
-                    <div class="text-end mb-3">
-                        <a href="#" class="text-decoration-none small text-muted">
-                            Forgot Password!
-                        </a>
-                    </div>
 
                     <div class="d-grid">
                         <button type="submit" class="btn btn-primary btn-lg rounded-pill">

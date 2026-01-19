@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string("nama_user");
             $table->string("password"); 
             $table->string("email")->unique(); 
-            $table->integer("telepon"); 
+            $table->string("telepon"); 
             $table->foreignId('id_role')->constrained('role','id_role');
             $table->foreignId('id_gudang')->constrained('gudang','id_gudang');
             $table->timestamps();
