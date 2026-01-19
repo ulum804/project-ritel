@@ -49,3 +49,7 @@ Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 Route::get('staff/dashboard', function() {
     return view('staff.dashboard');
 })->middleware('auth.check'); // nanti bisa buat middleware auth
+
+Route::get('/kepala/dashboard', function () {
+    return view('kepala.dashboard');
+})->middleware('auth.check');

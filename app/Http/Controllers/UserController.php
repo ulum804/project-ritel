@@ -64,7 +64,7 @@ class UserController extends Controller
         if ($user && Hash::check($request->password, $user->password)) {
             // 4️⃣ Simpan session
             session([
-                'user_id' => $user->id_user,
+                'id_user' => $user->id_user,
                 'user_name' => $user->nama_user,
                 'user_role' => $user->id_role,
                 'user_gudang' => $user->id_gudang,
@@ -72,9 +72,9 @@ class UserController extends Controller
 
             // 5️⃣ Redirect berdasarkan role
             if ($user->id_role == 1) { // misal 1 = kepala
-                return redirect('/kepala/dashboard');
-            } else {
                 return redirect('/staff/dashboard');
+            } else {
+                return redirect('/kepala/dashboard');
             }
         }
 
