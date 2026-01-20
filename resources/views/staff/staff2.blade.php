@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Warehouse 2 - Leya Mart</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <!-- TOP BAR -->
+    <nav class="navbar-custom">
+        <button class="menu-toggle" onclick="toggleSidebar()">
+            <i class="fas fa-list"></i>
+        </button>
+        <span class="navbar-brand">Leya Mart</span>
+        <div class="warehouse-title">
+            <span>Warehouse 2</span>
+        </div>
+        <span class="user-profile">
+            <i class="fas fa-user-circle"></i>
+        </span>
+    </nav>
+
+    <!-- MAIN CONTAINER -->
+    <div class="main-container">
+        <!-- SIDEBAR -->
+        <div class="sidebar-custom" id="sidebar">
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="#" class="menu-link active">
+                        <span><i class="fas fa-home"></i> Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="menu-link" onclick="toggleSubmenu(event, 'warehouse-menu')">
+                        <span><i class="fas fa-warehouse"></i> Warehouse</span>
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </a>
+                    <ul class="submenu" id="warehouse-menu">
+                        <li><a href="#"><i class="fas fa-box"></i> Product</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="menu-link" onclick="toggleSubmenu(event, 'transaction-menu')">
+                        <span><i class="fas fa-exchange-alt"></i> Transaction</span>
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </a>
+                    <ul class="submenu" id="transaction-menu">
+                        <li><a href="#"><i class="fas fa-file-invoice"></i> Purchase Order</a></li>
+                        <li><a href="#"><i class="fas fa-shopping-cart"></i> Sales Order</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="menu-link">
+                        <span><i class="fas fa-chart-bar"></i> Report</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="menu-link">
+                        <span><i class="fas fa-sign-out-alt"></i> Sign out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="content">
+            <!-- Warehouse Info Alert -->
+            <div class="warehouse-info" id="warehouseInfo">
+                <i class="fas fa-info-circle me-2"></i>
+                Anda sedang mengelola <strong>Warehouse 2</strong>
+            </div>
+
+            <!-- TAB NAVIGATION -->
+            <div class="nav-tabs-custom">
+                <a href="javascript:void(0)" class="tab-link active" onclick="showTab('storage')">
+                    <i class="fas fa-boxes me-2"></i>Management Storage
+                </a>
+                <a href="javascript:void(0)" class="tab-link" onclick="showTab('purchase')">
+                    <i class="fas fa-file-invoice me-2"></i>Purchase Report
+                </a>
+                <a href="javascript:void(0)" class="tab-link" onclick="showTab('sales')">
+                    <i class="fas fa-shopping-cart me-2"></i>Sales Report
+                </a>
+                <a href="javascript:void(0)" class="tab-link" onclick="showTab('transfer')">
+                    <i class="fas fa-exchange-alt me-2"></i>Transfer Stock
+                </a>
+            </div>
+
+            <!-- MANAGEMENT STORAGE TAB -->
+            <div id="storage" class="tab-pane active">
+                <div class="storage-header">
+                    <h2>Management Storage</h2>
+                </div>
+
+                <div class="storage-search">
+                    <input type="text" id="searchInput" placeholder="Cari produk atau SKU..." onkeyup="searchProducts()">
+                    <button onclick="searchProducts()"><i class="fas fa-search"></i> Cari</button>
+                </div>
+
+                <div class="storage-stats">
+                    <div class="stat-box">
+                        <div class="stat-label">Total Produk</div>
+                        <div class="stat-value">12</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Stok Tersedia</div>
+                        <div class="stat-value">2,458</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Stok Rendah</div>
+                        <div class="stat-value">3</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Habis Terjual</div>
+                        <div class="stat-value">1</div>
+                    </div>
+                </div>
+
+                <div class="products-grid" id="productsGrid"></div>
+            </div>
+
+            <!-- PURCHASE REPORT TAB -->
+            <div id="purchase" class="tab-pane">
+                <div class="card report-card">
+                    <div class="card-body">
+                        <div class="report-title">Pembelian Barang</div>
+                        <div class="table-responsive">
+                            <table class="table table-custom table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Product</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                        <th>Total</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>PO001</td>
+                                        <td>Minyak Goreng Tropical</td>
+                                        <td>50 unit</td>
+                                        <td>Rp 45.900</td>
+                                        <td>Rp 2.295.000</td>
+                                        <td>10-Jan-2025</td>
+                                    </tr>
+                                    <tr>
+                                        <td>PO002</td>
+                                        <td>Indomie Ayam Bawang</td>
+                                        <td>200 box</td>
+                                        <td>Rp 3.500</td>
+                                        <td>Rp 700.000</td>
+                                        <td>11-Jan-2025</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="date-info">
+                            DATE: 13 Januari 2025
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SALES REPORT TAB -->
+            <div id="sales" class="tab-pane">
+                <div class="card report-card">
+                    <div class="card-body">
+                        <div class="report-title">Penjualan Barang</div>
+                        <div class="table-responsive">
+                            <table class="table table-custom table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Product</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                        <th>Total</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>SO001</td>
+                                        <td>Teh Kotak</td>
+                                        <td>30 pcs</td>
+                                        <td>Rp 6.500</td>
+                                        <td>Rp 195.000</td>
+                                        <td>12-Jan-2025</td>
+                                    </tr>
+                                    <tr>
+                                        <td>SO002</td>
+                                        <td>Sprite 600ml</td>
+                                        <td>25 pcs</td>
+                                        <td>Rp 15.000</td>
+                                        <td>Rp 375.000</td>
+                                        <td>13-Jan-2025</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="date-info">
+                            DATE: 13 Januari 2025
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TRANSFER STOCK TAB -->
+            <div id="transfer" class="tab-pane">
+                <div class="transfer-form">
+                    <h4 style="margin-bottom: 25px; color: #333;">Pengajuan Transfer Stock</h4>
+                    <form onsubmit="submitTransfer(event)">
+                        <div class="form-row">
+                            <div class="form-group-custom">
+                                <label>From Warehouse:</label>
+                                <input type="text" id="fromWarehouse" value="Warehouse 2" readonly>
+                            </div>
+                            <div class="form-group-custom">
+                                <label>To Warehouse:</label>
+                                <select id="toWarehouse" required>
+                                    <option value="">Pilih Warehouse Tujuan</option>
+                                    <option value="2">Warehouse 2</option>
+                                    <option value="3">Warehouse 3</option>
+                                    <option value="4">Warehouse 4</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group-custom">
+                                <label>Product:</label>
+                                <select id="productSelect" required>
+                                    <option value="">Pilih Produk</option>
+                                    <option value="Minyak Goreng Tropical 2L">Minyak Goreng Tropical 2L</option>
+                                    <option value="Indomie Rasa Ayam Bawang">Indomie Rasa Ayam Bawang</option>
+                                    <option value="Sarimi Mi Instan Rasa Kari">Sarimi Mi Instan Rasa Kari</option>
+                                    <option value="Beras Premium 5 kg">Beras Premium 5 kg</option>
+                                    <option value="Gula Pasir 1 kg">Gula Pasir 1 kg</option>
+                                    <option value="Teh Kotak Asli 250ml">Teh Kotak Asli 250ml</option>
+                                    <option value="Sprite 600ml Botol">Sprite 600ml Botol</option>
+                                    <option value="Susu Bendera 1L">Susu Bendera 1L</option>
+                                    <option value="Biscuit Biskuat Vanila">Biscuit Biskuat Vanila</option>
+                                    <option value="Shampoo Sunsilk 170ml">Shampoo Sunsilk 170ml</option>
+                                    <option value="Sabun Dove Bar 100g">Sabun Dove Bar 100g</option>
+                                    <option value="Pasta Gigi Pepsodent 190g">Pasta Gigi Pepsodent 190g</option>
+                                </select>
+                            </div>
+                            <div class="form-group-custom">
+                                <label>Quantity:</label>
+                                <input type="number" id="quantity" placeholder="Masukkan jumlah" min="1" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group-custom">
+                            <label>Note:</label>
+                            <textarea id="note" placeholder="Catatan pengajuan..." rows="4"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-submit-custom"><i class="fas fa-paper-plane me-2"></i>Kirim Pengajuan</button>
+                    </form>
+
+                    <div style="margin-top: 30px;">
+                        <h5 style="color: #333; margin-bottom: 15px;">Riwayat Pengajuan Transfer</h5>
+                        <div class="table-responsive">
+                            <table class="table table-custom table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Product</th>
+                                        <th>From</th>
+                                        <th>To</th>
+                                        <th>Qty</th>
+                                        <th>Status</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>TR001</td>
+                                        <td>Indomie Ayam Bawang</td>
+                                        <td>WH 1</td>
+                                        <td>WH 2</td>
+                                        <td>50 box</td>
+                                        <td><span class="status-badge-custom status-completed">Completed</span></td>
+                                        <td>05-Jan-2025</td>
+                                    </tr>
+                                    <tr>
+                                        <td>TR002</td>
+                                        <td>Sprite 600ml</td>
+                                        <td>WH 1</td>
+                                        <td>WH 3</td>
+                                        <td>30 pcs</td>
+                                        <td><span class="status-badge-custom status-approved">Approved</span></td>
+                                        <td>10-Jan-2025</td>
+                                    </tr>
+                                    <tr>
+                                        <td>TR003</td>
+                                        <td>Teh Kotak</td>
+                                        <td>WH 1</td>
+                                        <td>WH 4</td>
+                                        <td>20 pcs</td>
+                                        <td><span class="status-badge-custom status-pending">Pending</span></td>
+                                        <td>12-Jan-2025</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let currentWarehouse = 2;
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+
+        function toggleSubmenu(event, menuId) {
+            event.preventDefault();
+            const submenu = document.getElementById(menuId);
+            const arrow = event.currentTarget.querySelector('.dropdown-arrow');
+            submenu.classList.toggle('show');
+            arrow.classList.toggle('rotate');
+        }
+
+        // Product Database
+        const products = [
+            { id: 1, name: 'Minyak Goreng Tropical 2L', sku: 'MGT-001', stock: 145, price: 'Rp 45.900', emoji: '🍳', status: 'available' },
+            { id: 2, name: 'Indomie Rasa Ayam Bawang', sku: 'IND-002', stock: 320, price: 'Rp 3.500', emoji: '🍜', status: 'available' },
+            { id: 3, name: 'Sarimi Mi Instan Rasa Kari', sku: 'SAR-003', stock: 15, price: 'Rp 2.800', emoji: '🍝', status: 'low' },
+            { id: 4, name: 'Beras Premium 5 kg', sku: 'BRS-004', stock: 87, price: 'Rp 78.000', emoji: '🌾', status: 'available' },
+            { id: 5, name: 'Gula Pasir 1 kg', sku: 'GUL-005', stock: 0, price: 'Rp 14.500', emoji: '🍯', status: 'out' },
+            { id: 6, name: 'Teh Kotak Asli 250ml', sku: 'TEH-006', stock: 256, price: 'Rp 6.500', emoji: '🥤', status: 'available' },
+            { id: 7, name: 'Sprite 600ml Botol', sku: 'SPR-007', stock: 189, price: 'Rp 15.000', emoji: '🥤', status: 'available' },
+            { id: 8, name: 'Susu Bendera 1L', sku: 'SBS-008', stock: 42, price: 'Rp 25.000', emoji: '🥛', status: 'low' },
+            { id: 9, name: 'Biscuit Biskuat Vanila', sku: 'BIS-009', stock: 203, price: 'Rp 21.000', emoji: '🍪', status: 'available' },
+            { id: 10, name: 'Shampoo Sunsilk 170ml', sku: 'SHP-010', stock: 78, price: 'Rp 12.500', emoji: '🧴', status: 'available' },
+            { id: 11, name: 'Sabun Dove Bar 100g', sku: 'SBN-011', stock: 156, price: 'Rp 8.500', emoji: '🧼', status: 'available' },
+            { id: 12, name: 'Pasta Gigi Pepsodent 190g', sku: 'PST-012', stock: 91, price: 'Rp 18.000', emoji: '😁', status: 'available' }
+        ];
+
+        function renderProducts(productsToShow = products) {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+            
+            productsToShow.forEach(product => {
+                const stockClass = product.status === 'available' ? 'stock-available' : 
+                                   product.status === 'low' ? 'stock-low' : 'stock-out';
+                const stockText = product.status === 'available' ? '✓ Tersedia' : 
+                                  product.status === 'low' ? '⚠ Stok Rendah' : '✗ Habis';
+                
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <div class="product-image">${product.emoji}</div>
+                    <div class="product-info">
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-sku">${product.sku}</div>
+                        <div class="product-stock">
+                            <span class="stock-label">Stok:</span>
+                            <span class="stock-value">${product.stock}</span>
+                        </div>
+                        <div class="product-price">${product.price}</div>
+                        <span class="stock-status ${stockClass}">${stockText}</span>
+                        <div class="product-actions">
+                            <button class="btn-product btn-edit" onclick="editProduct(${product.id})">Edit</button>
+                            <button class="btn-product btn-delete" onclick="deleteProduct(${product.id})">Hapus</button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function searchProducts() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = products.filter(p => 
+                p.name.toLowerCase().includes(searchTerm) || 
+                p.sku.toLowerCase().includes(searchTerm)
+            );
+            renderProducts(filtered);
+        }
+
+        function editProduct(id) {
+            alert('Edit product ID: ' + id);
+        }
+
+        function deleteProduct(id) {
+            alert('Delete product ID: ' + id);
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+
+        function updateWarehouseOptions() {
+            if (currentWarehouse === 1) {
+                document.getElementById('toWarehouse').innerHTML = `
+                    <option value="">Pilih Warehouse Tujuan</option>
+                    <option value="2">Warehouse 2</option>
+                    <option value="3">Warehouse 3</option>
+                    <option value="4">Warehouse 4</option>
+                `;
+            } else if (currentWarehouse >= 2) {
+                document.getElementById('toWarehouse').innerHTML = `
+                    <option value="">Pilih Warehouse Asal</option>
+                    <option value="1">Warehouse 2</option>
+                `;
+            }
+        }
+
+        function showTab(tabName) {
+            const tabs = document.querySelectorAll('.tab-pane');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            const links = document.querySelectorAll('.tab-link');
+            links.forEach(link => link.classList.remove('active'));
+            
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function submitTransfer(event) {
+            event.preventDefault();
+            const toWarehouse = document.getElementById('toWarehouse').value;
+            const product = document.getElementById('productSelect').value;
+            const quantity = document.getElementById('quantity').value;
+            const note = document.getElementById('note').value;
+
+            if (!toWarehouse || !product || !quantity) {
+                alert('Mohon isi semua field yang diperlukan');
+                return;
+            }
+
+            alert(`Pengajuan transfer berhasil!\nDari: Warehouse ${currentWarehouse}\nKe: Warehouse ${toWarehouse}\nProduk: ${product}\nJumlah: ${quantity}`);
+            document.getElementById('toWarehouse').value = '';
+            document.getElementById('productSelect').value = '';
+            document.getElementById('quantity').value = '';
+            document.getElementById('note').value = '';
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            renderProducts();
+            updateWarehouseOptions();
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const toggle = document.querySelector('.menu-toggle');
+            
+            if (window.innerWidth < 768 && 
+                !sidebar.contains(event.target) && 
+                !toggle.contains(event.target)) {
+                sidebar.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

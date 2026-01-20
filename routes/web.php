@@ -30,9 +30,9 @@ Route::post('/login', [UserController::class, 'login'])->name('login.store');
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
 // Route dashboard contoh
-Route::get('staff/dashboard', function () {
-    return view('staff.dashboard');
-})->middleware('auth.check'); // nanti bisa buat middleware auth
+// Route::get('staff/dashboard', function () {
+//     return view('staff.dashboard');
+// })->middleware('auth.check'); // nanti bisa buat middleware auth
 
 Route::get('/kepala/dashboard', function () {
     return view('kepala.dashboard');
@@ -50,6 +50,18 @@ Route::get('/kepala/warehouse4', function () {
     return view('kepala.warehouse4');
 })->middleware('auth.check')->name('warehouse4');
 
+Route::get('/staff/staff1', function () {
+    return view('staff.staff1');
+})->middleware('auth.check')->name('staff1');
+Route::get('/staff/staff2', function () {
+    return view('staff.staff2');
+})->middleware('auth.check')->name('staff2');
+Route::get('/staff/staff3', function () {
+    return view('staff.staff3');
+})->middleware('auth.check')->name('staff3');
+Route::get('/staff/staff4', function () {
+    return view('staff.staff4');
+})->middleware('auth.check')->name('staff4');
 
 // Route::get('/kepala', function () {
 //     return view('kepala.warehouse1');
