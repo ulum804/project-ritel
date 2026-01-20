@@ -30,17 +30,29 @@ Route::post('/login', [UserController::class, 'login'])->name('login.store');
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
 // Route dashboard contoh
-Route::get('staff/dashboard', function() {
+Route::get('staff/dashboard', function () {
     return view('staff.dashboard');
 })->middleware('auth.check'); // nanti bisa buat middleware auth
 
-// Route::get('/kepala/dashboard', function () {
-//     return view('kepala.dashboard');
-// })->middleware('auth.check');
-//     return view('warehouse.warehouse-1');
-// });
+Route::get('/kepala/dashboard', function () {
+    return view('kepala.dashboard');
+})->middleware('auth.check')->name('kepala.dashboard');
+Route::get('/kepala/warehouse1', function () {
+    return view('kepala.warehouse1');
+})->middleware('auth.check')->name('warehouse1');
+Route::get('/kepala/warehouse2', function () {
+    return view('kepala.warehouse2');
+})->middleware('auth.check')->name('warehouse2');
+Route::get('/kepala/warehouse3', function () {
+    return view('kepala.warehouse3');
+})->middleware('auth.check')->name('warehouse3');
+Route::get('/kepala/warehouse4', function () {
+    return view('kepala.warehouse4');
+})->middleware('auth.check')->name('warehouse4');
+
+
 // Route::get('/kepala', function () {
-//     return view('warehouse.kepala-gudang');
+//     return view('kepala.warehouse1');
 // });
 // Route::get('/warehouse-1', function () {
 //     return view('warehouse.warehouse-1');

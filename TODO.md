@@ -1,0 +1,2 @@
+- [ ] Fix index method: change 'userr' to 'user' in with() clause
+- [ ] Fix store method: change $validated to $validatedData and set id_user and status_masuk on $validatedData

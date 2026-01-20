@@ -74,7 +74,7 @@ class UserController extends Controller
             if ($user->id_role == 1) { // misal 1 = kepala
                 return redirect('/staff/dashboard');
             } else {
-                return redirect('/kepala/dashboard');
+                return redirect('/kepala/warehouse1');
             }
         }
 
