@@ -25,32 +25,38 @@
                 <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
                 <input type="number" name="telepon" class="form-control" placeholder="Telepon">
             </div>
-           <div class="mb-3 input-group">
+           <div  class="mb-3 input-group">
                 <span class="input-group-text">
                     <i class="bi bi-person-badge-fill"></i>
                 </span>
-                 <select name="jabatan" class="form-select" required>
+                <select name="jabatan" id="jabatan" class="form-select mb-3" required>
                     <option value="" disabled selected>Pilih Jabatan</option>
                     <option value="staff_gudang">Staff Gudang</option>
                     <option value="kepala_gudang">Kepala Gudang</option>
                     <option value="admin">Admin</option>
                 </select>
             </div>
-           <div class="mb-3 input-group">
+           <div id="gudangWrapper" class="mb-3 input-group">
                 <span class="input-group-text">
                     <i class="bi bi-person-badge-fill"></i>
                 </span>
-                <select name="id_gudang" class="form-select" required>
-                    <option value="" disabled selected>Pilih Gudang</option>
-                    @foreach ($gudangs as $gudang)
-                        <option value="{{ $gudang->id_gudang }}">
-                            {{ $gudang->nama_gudang }}
-                        </option>
+                <select name="id_gudang" class="form-select mb-3">
+                    <option value="">Pilih Gudang</option>
+                    @foreach ($gudangs as $g)
+                        <option value="{{ $g->id_gudang }}">{{ $g->nama_gudang }}</option>
                     @endforeach
                 </select>
             </div>
+            {{-- <div id="gudangWrapper" style="display:none">
+                <select name="id_gudang" class="form-select mb-3">
+                    <option value="">Pilih Gudang</option>
+                    @foreach ($gudangs as $g)
+                        <option value="{{ $g->id_gudang }}">{{ $g->nama_gudang }}</option>
+                    @endforeach
+                </select>
+            </div> --}}
             <div class="mb-3 input-group">
-                <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+                <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
                 <input type="text" name="email" class="form-control" placeholder="Email">
             </div>
             <div class="mb-3 input-group">
@@ -70,5 +76,9 @@
         </div>
     </div>
     </div>
+    <script src="{{ asset('js/login/regis.js') }}"></script>
+<script>
+ 
+</script>
 </body>
 </html>

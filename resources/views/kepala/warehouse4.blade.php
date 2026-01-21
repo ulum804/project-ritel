@@ -64,220 +64,137 @@
 
             <!-- PURCHASE REPORT TAB -->
             <div id="purchase" class="tab-pane active">
-        <div class="card report-card">
-            <div class="card-body">
-                <div class="report-title">Pembelian Barang</div>
-                <div class="table-responsive">
-                    <table class="table table-custom table-hover">
-                        <thead>
-                            <tr>
-                                <th>ID Order</th>
-                                <th>Product</th>
-                                <th>Quantity</th>
-                                <th>Alasan</th>
-                                <th>Total Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>#RT7K</td>
-                                <td>Minyak Sunmit 1ltr</td>
-                                <td>6 pack</td>
-                                <td>Waiting for confirmation</td>
-                                <td>Rp. 1,040,400.00</td>
-                                <td>
-                                    <div class="btn-action-group">
-                                        <button class="btn btn-danger btn-small">TOLAK</button>
-                                        <button class="btn btn-success btn-small">TERIMA</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#SU9L</td>
-                                <td>Cimory yogurt strawberry</td>
-                                <td>75 pcs</td>
-                                <td>Delivery confirmation</td>
-                                <td>Rp. 382,500.00</td>
-                                <td>
-                                    <div class="btn-action-group">
-                                        <button class="btn btn-danger btn-small">TOLAK</button>
-                                        <button class="btn btn-success btn-small">TERIMA</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="card report-card">
+                    <div class="card-body">
+                        <div class="report-title">Barang Masuk</div>
+                        <div class="table-responsive">
+                            <table class="table table-custom table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID Order</th>
+                                        <th>Product</th>
+                                        <th>Quantity</th>
+                                        <th>Alasan</th>
+                                        <th>Total Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>#KY9W</td>
+                                        <td>Minyak Sunmit 1ltr</td>
+                                        <td>4 pack</td>
+                                        <td>Waiting for confirmation</td>
+                                        <td>Rp. 867,000.00</td>
+                                        <td>
+                                            <div class="btn-action-group">
+                                                <button class="btn btn-danger btn-small">TOLAK</button>
+                                                <button class="btn btn-success btn-small">TERIMA</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#EBG2</td>
+                                        <td>Cimory yogurt strawberry</td>
+                                        <td>50 pcs</td>
+                                        <td>Delivery confirmation</td>
+                                        <td>Rp. 255,000.00</td>
+                                        <td>
+                                            <div class="btn-action-group">
+                                                <button class="btn btn-danger btn-small">TOLAK</button>
+                                                <button class="btn btn-success btn-small">TERIMA</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#TDH1</td>
+                                        <td>Gorilla coffee</td>
+                                        <td>2 pack</td>
+                                        <td>Delivery validate stock</td>
+                                        <td>Rp. 425,000.00</td>
+                                        <td>
+                                            <div class="btn-action-group">
+                                                <button class="btn btn-danger btn-small">TOLAK</button>
+                                                <button class="btn btn-success btn-small">TERIMA</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="date-info">
+                            DATE: 13 Januari 2025
+                        </div>
+                    </div>
                 </div>
-                <div class="date-info">
-                    DATE: 15 Januari 2025
-                </div>
-            </div>
-        </div>
             </div>
 
             <!-- SALES REPORT TAB -->
             <div id="sales" class="tab-pane">
-        <div class="card report-card">
-            <div class="card-body">
-                <div class="report-title">Penjualan Barang</div>
-                <div class="table-responsive">
-                    <table class="table table-custom table-hover">
-                        <thead>
-                            <tr>
-                                <th>ID Order</th>
-                                <th>Product</th>
-                                <th>Quantity</th>
-                                <th>Activity</th>
-                                <th>Total Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>#KY9W</td>
-                                <td>Gorilla coffee</td>
-                                <td>3 pack</td>
-                                <td>Waiting for confirmation</td>
-                                <td>Rp. 255,000.00</td>
-                                <td>
-                                    <div class="btn-action-group">
-                                        <button class="btn btn-danger btn-small">TOLAK</button>
-                                        <button class="btn btn-success btn-small">TERIMA</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#EBG2</td>
-                                <td>Cimory yogurt strawberry</td>
-                                <td>35 pcs</td>
-                                <td>Packaging & QC</td>
-                                <td>Rp. 157,500.00</td>
-                                <td>
-                                    <div class="btn-action-group">
-                                        <button class="btn btn-danger btn-small">TOLAK</button>
-                                        <button class="btn btn-success btn-small">TERIMA</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#MV5M</td>
-                                <td>Minyak Sunmit 1ltr</td>
-                                <td>12 pcs</td>
-                                <td>In delivery</td>
-                                <td>Rp. 216,000.00</td>
-                                <td>
-                                    <div class="btn-action-group">
-                                        <button class="btn btn-danger btn-small">TOLAK</button>
-                                        <button class="btn btn-success btn-small">TERIMA</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="date-info">
-                    DATE: 15 Januari 2025
-                </div>
-            </div>
-        </div>
-            </div>
-
-            <!-- MOVE REPORT TAB -->
-            <div id="move" class="tab-pane">
-        <div class="card report-card">
-            <div class="card-body">
-                <div class="report-title">Barang Pindahan (Masuk)</div>
-                <div class="table-responsive">
-                    <table class="table table-custom table-hover">
-                        <thead>
-                            <tr>
-                                <th>ID Order</th>
-                                <th>Product</th>
-                                <th>Quantity</th>
-                                <th>Activity</th>
-                                <th>Total Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>#MV5N</td>
-                                <td>Cimory yogurt strawberry</td>
-                                <td>30 pcs</td>
-                                <td>Arrival confirmation</td>
-                                <td>Rp. 153,000.00</td>
-                                <td>
-                                    <div class="btn-action-group">
-                                        <button class="btn btn-danger btn-small">TOLAK</button>
-                                        <button class="btn btn-success btn-small">TERIMA</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#MV6O</td>
-                                <td>Gorilla coffee</td>
-                                <td>5 pack</td>
-                                <td>In transit</td>
-                                <td>Rp. 425,000.00</td>
-                                <td>
-                                    <div class="btn-action-group">
-                                        <button class="btn btn-danger btn-small">TOLAK</button>
-                                        <button class="btn btn-success btn-small">TERIMA</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="date-info">
-                    DATE: 14 Januari 2025<br>
-                    ASAL: warehouse 1<br>
-                    TUJUAN: Warehouse 4
+                <div class="card report-card">
+                    <div class="card-body">
+                        <div class="report-title">Barang Keluar</div>
+                        <div class="table-responsive">
+                            <table class="table table-custom table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID Order</th>
+                                        <th>Product</th>
+                                        <th>Quantity</th>
+                                        <th>Activity</th>
+                                        <th>Total Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>#KY9W</td>
+                                        <td>Minyak Sunmit 1ltr</td>
+                                        <td>10 pcs</td>
+                                        <td>Waiting for confirmation</td>
+                                        <td>Rp. 78,000.00</td>
+                                        <td>
+                                            <div class="btn-action-group">
+                                                <button class="btn btn-danger btn-small">TOLAK</button>
+                                                <button class="btn btn-success btn-small">TERIMA</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#EBG2</td>
+                                        <td>Cimory yogurt strawberry</td>
+                                        <td>25 pcs</td>
+                                        <td>Packaging & QC</td>
+                                        <td>Rp. 112,500.00</td>
+                                        <td>
+                                            <div class="btn-action-group">
+                                                <button class="btn btn-danger btn-small">TOLAK</button>
+                                                <button class="btn btn-success btn-small">TERIMA</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#TDH1</td>
+                                        <td>Gorilla coffee</td>
+                                        <td>5 pack</td>
+                                        <td>Delivery orders</td>
+                                        <td>Rp. 212,500.00</td>
+                                        <td>
+                                            <div class="btn-action-group">
+                                                <button class="btn btn-danger btn-small">TOLAK</button>
+                                                <button class="btn btn-success btn-small">TERIMA</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="date-info">
+                            DATE: 13 Januari 2025
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <!-- MOVE REPORT - Outgoing -->
-        <div class="card report-card">
-            <div class="card-body">
-                <div class="report-title">Barang Dipindah (Keluar)</div>
-                <div class="table-responsive">
-                    <table class="table table-custom table-hover">
-                        <thead>
-                            <tr>
-                                <th>ID Order</th>
-                                <th>Product</th>
-                                <th>Quantity</th>
-                                <th>Activity</th>
-                                <th>Total Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>#MV7P</td>
-                                <td>Teh Pucuk Harum</td>
-                                <td>20 pcs</td>
-                                <td>Ready for dispatch</td>
-                                <td>Rp. 120,000.00</td>
-                                <td>
-                                    <div class="btn-action-group">
-                                        <button class="btn btn-danger btn-small">TOLAK</button>
-                                        <button class="btn btn-success btn-small">TERIMA</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="date-info">
-                    DATE: 13 Januari 2025<br>
-                    ASAL: Warehouse 4<br>
-                    TUJUAN: Warehouse 1
-                </div>
-            </div>
-        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

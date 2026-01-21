@@ -50,18 +50,52 @@ Route::get('/kepala/warehouse4', function () {
     return view('kepala.warehouse4');
 })->middleware('auth.check')->name('warehouse4');
 
-Route::get('/staff/staff1', function () {
-    return view('staff.staff1');
-})->middleware('auth.check')->name('staff1');
-Route::get('/staff/staff2', function () {
-    return view('staff.staff2');
-})->middleware('auth.check')->name('staff2');
-Route::get('/staff/staff3', function () {
-    return view('staff.staff3');
-})->middleware('auth.check')->name('staff3');
-Route::get('/staff/staff4', function () {
-    return view('staff.staff4');
-})->middleware('auth.check')->name('staff4');
+// Route::get('/staff/utama', function () {
+//     return view('staff.utama');
+// })->middleware('auth.check')->name('utama');
+// Route::get('/staff/cabang2', function () {
+//     return view('staff.cabang2');
+// })->middleware('auth.check')->name('cabang2');
+// Route::get('/staff/staff3', function () {
+//     return view('staff.staff3');
+// })->middleware('auth.check')->name('staff3');
+// Route::get('/staff/staff4', function () {
+//     return view('staff.staff4');
+// })->middleware('auth.check')->name('staff4');
+
+// Route::get('/staff/utama', function () {
+//     abort_if(session('user_gudang') != 4, 403);
+//     return view('staff.utama');
+// });
+// Route::get('/staff/cabang1', function () {
+//     abort_if(session('user_gudang') != 1, 403);
+//     return view('staff.cabang1');
+// });
+// Route::get('/staff/cabang2', function () {
+//     abort_if(session('user_gudang') != 2, 403);
+//     return view('staff.utama');
+// });
+// Route::get('/staff/reject', function () {
+//     abort_if(session('user_gudang') != 3, 403);
+//     return view('staff.reject');
+// });
+
+Route::get('/staff/utama', function () {
+    return view('staff.utama');
+});
+
+Route::get('/staff/cabang2', function () {
+    return view('staff.cabang2');
+});
+
+Route::get('/staff/cabang3', function () {
+    return view('staff.cabang3');
+});
+
+Route::get('/staff/reject', function () {
+    return view('staff.reject');
+});
+
 
 // Route::get('/kepala', function () {
 //     return view('kepala.warehouse1');
