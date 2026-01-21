@@ -32,10 +32,10 @@
         <!-- SIDEBAR -->
         <div class="sidebar-custom" id="sidebar" style="display: flex; flex-direction: column; height: 100%;">
             <div style="flex: 1; overflow-y: auto;">
-                 <a href="{{ route('admin.manajemen') }}" class="sidebar-item">
+                 <a href="{{ route('admin.manajemen') }}" class="sidebar-item active">
                     <i class="bi bi-people"></i> Manajemen User
                 </a>
-                <a href="{{ route('admin.laporan') }}" class="sidebar-item active">
+                <a href="{{ route('admin.laporan') }}" class="sidebar-item">
                     <i class="bi bi-file-earmark-text"></i> Laporan
                 </a>
                 <a href="{{ route('admin.stok') }}" class="sidebar-item">
