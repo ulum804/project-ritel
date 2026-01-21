@@ -117,6 +117,19 @@ Route::get('/staff/reject', function () {
 // })->name('warehouse.4');
 
 
+// admin
+Route::get('/admin/laporan', function () {
+    return view('admin.laporan');
+})->middleware('auth.check')->name('admin.laporan');
+Route::get('/admin/manajemen', function () {
+    return view('admin.manajemen');
+})->middleware('auth.check')->name('admin.manajemen');
+Route::get('/admin/stok', function () {
+    return view('admin.stok');
+})->middleware('auth.check')->name('admin.stok');
+
+
+
 Route::get('/login', [UserController::class, 'showLoginForm'])->name('login.form');
 Route::post('/login', [UserController::class, 'login'])->name('login.store');
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');

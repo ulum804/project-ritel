@@ -91,7 +91,7 @@ class UserController extends Controller
 
         // Redirect berdasarkan role
         if ($user->role->jabatan === 'admin') {
-            return redirect('/admin/dashboard');
+            return redirect('/admin/laporan');
         }
 
         if ($user->role->jabatan === 'kepala_gudang') {
