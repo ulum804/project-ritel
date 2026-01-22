@@ -134,6 +134,55 @@
                 <div class="card report-card">
                     <div class="card-body">
                         <div class="report-title">Pembelian Barang</div>
+                       <!-- FORM BARANG masuk -->
+<div class="card report-card mt-4">
+    <div class="card-body">
+        <div class="report-title">Form Barang masuk</div>
+
+        <form>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label">ID Barang masuk</label>
+                    <input type="text" class="form-control" placeholder="BK001">
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Nama Produk</label>
+                    <select class="form-select">
+                        <option selected>Pilih Produk</option>
+                       
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Tanggal Keluar</label>
+                    <input type="date" class="form-control">
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Jumlah</label>
+                    <input type="number" class="form-control" placeholder="Masukkan jumlah">
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Harga Satuan</label>
+                    <input type="text" class="form-control" placeholder="Rp 0">
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Total</label>
+                    <input type="text" class="form-control" placeholder="Rp 0" readonly>
+                </div>
+            </div>
+
+            <div class="mt-4 text-end">
+                <button type="reset" class="btn btn-secondary me-2">Reset</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
+            </div>
+        </form>
+    </div>
+</div>
+
                         <div class="table-responsive">
                             <table class="table table-custom table-hover">
                                 <thead>
@@ -178,6 +227,52 @@
                 <div class="card report-card">
                     <div class="card-body">
                         <div class="report-title">Penjualan Barang</div>
+                        <div class="report-title">Form Barang Keluar</div>
+
+        <form>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label">ID Barang Keluar</label>
+                    <input type="text" class="form-control" placeholder="BK001">
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Nama Produk</label>
+                    <select class="form-select">
+                        <option selected>Pilih Produk</option>
+                       
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Tanggal Keluar</label>
+                    <input type="date" class="form-control">
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Jumlah</label>
+                    <input type="number" class="form-control" placeholder="Masukkan jumlah">
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Harga Satuan</label>
+                    <input type="text" class="form-control" placeholder="Rp 0">
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Total</label>
+                    <input type="text" class="form-control" placeholder="Rp 0" readonly>
+                </div>
+            </div>
+
+            <div class="mt-4 text-end">
+                <button type="reset" class="btn btn-secondary me-2">Reset</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
+            </div>
+        </form>
+    </div>
+</div>
+
                         <div class="table-responsive">
                             <table class="table table-custom table-hover">
                                 <thead>
