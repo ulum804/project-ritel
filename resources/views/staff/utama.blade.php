@@ -112,59 +112,58 @@
             <div class="card report-card">
                 <div class="card-body">
                     <div class="report-title">Form Barang Masuk</div>
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <label class="form-label">From Warehouse</label>
+                                    <input type="text" class="form-control" placeholder="Gudang pertama" readonly>
+                                </div>
 
-                    <form>
-                        <div class="row g-3">
-                            <div class="col-md-4">
-                                <label class="form-label">From Warehouse</label>
-                                <input type="text" class="form-control" placeholder="Gudang pertama" readonly>
+                                <div class="col-md-4">
+                                    <label class="form-label">Nama Produk</label>
+                                    <select class="form-select">
+                                        <option selected>Pilih Produk</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="form-label">Tanggal Keluar</label>
+                                    <input type="date" class="form-control">
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="form-label">Jumlah</label>
+                                    <input type="number" class="form-control" placeholder="Masukkan jumlah">
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="form-label">Harga Satuan</label>
+                                    <input type="text" class="form-control" placeholder="Rp 0">
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="form-label">To Warehouse</label>
+                                    <select class="form-select">
+                                        <option selected>Pilih Warehouse Tujuan</option>
+                                        <option value="2">Gudang Utama</option>
+                                        <option value="3">Cabang 1</option>
+                                        <option value="4">Gudang Reject</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label class="form-label">Alasan</label>
+                                    <textarea class="form-control" rows="3"
+                                        placeholder="Masukkan alasan atau catatan pengeluaran barang"></textarea>
+                                </div>
                             </div>
 
-                            <div class="col-md-4">
-                                <label class="form-label">Nama Produk</label>
-                                <select class="form-select">
-                                    <option selected>Pilih Produk</option>
-                                </select>
+                            <div class="mt-4 text-end">
+                                <button type="reset" class="btn btn-secondary me-2">Reset</button>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
                             </div>
-
-                            <div class="col-md-4">
-                                <label class="form-label">Tanggal Keluar</label>
-                                <input type="date" class="form-control">
-                            </div>
-
-                            <div class="col-md-4">
-                                <label class="form-label">Jumlah</label>
-                                <input type="number" class="form-control" placeholder="Masukkan jumlah">
-                            </div>
-
-                            <div class="col-md-4">
-                                <label class="form-label">Harga Satuan</label>
-                                <input type="text" class="form-control" placeholder="Rp 0">
-                            </div>
-
-                            <div class="col-md-4">
-                                <label class="form-label">To Warehouse</label>
-                                <select class="form-select">
-                                    <option selected>Pilih Warehouse Tujuan</option>
-                                    <option value="2">Gudang Utama</option>
-                                    <option value="3">Cabang 1</option>
-                                    <option value="4">Gudang Reject</option>
-                                </select>
-                            </div>
-
-                            <div class="col-md-12">
-                                <label class="form-label">Alasan</label>
-                                <textarea class="form-control" rows="3"
-                                    placeholder="Masukkan alasan atau catatan pengeluaran barang"></textarea>
-                            </div>
-                        </div>
-
-                        <div class="mt-4 text-end">
-                            <button type="reset" class="btn btn-secondary me-2">Reset</button>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                        </div>
-                    </form>
-                </div>
+                        </form>
+                    </div>
             </div>
         </div>
 
