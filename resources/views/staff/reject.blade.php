@@ -791,55 +791,75 @@
         </div> --}}
 
         <!-- SALES TAB -->
-        <div id="sales" class="tab-pane">
+       <div id="sales" class="tab-pane">
             <div class="card report-card">
                 <div class="card-body">
+                    @if(session('success'))
+                        <div class="alert alert-success">{{ session('success') }}</div>
+                    @endif
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                            <ul class="mb-0">
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="report-title">Form Barang Keluar</div>
 
-                    <form>
+                    <form action="{{ route('barang.keluar.store') }}" method="POST">
+                        @csrf
                         <div class="row g-3">
                             <div class="col-md-4">
                                 <label class="form-label">From Warehouse</label>
-                                <input type="text" class="form-control" placeholder="Gudang pertama" readonly>
+                                <input type="text" class="form-control" placeholder="Gudang Utama" readonly>
                             </div>
 
                             <div class="col-md-4">
                                 <label class="form-label">Nama Produk</label>
-                                <select class="form-select">
-                                    <option selected>Pilih Produk</option>
+                                <select name="id_barang" class="form-select" required>
+                                    <option value="">Pilih Produk</option>
+                                    @foreach($barangs as $barang)
+                                        <option value="{{ $barang->id_barang }}">{{ $barang->nama_barang }}</option>
+                                    @endforeach
                                 </select>
                             </div>
 
                             <div class="col-md-4">
                                 <label class="form-label">Tanggal Keluar</label>
-                                <input type="date" class="form-control">
+                                <input type="date" name="tanggal_keluar_in" class="form-control" required>
                             </div>
 
                             <div class="col-md-4">
                                 <label class="form-label">Jumlah</label>
-                                <input type="number" class="form-control" placeholder="Masukkan jumlah">
+                                <input type="number" name="qty_keluar" class="form-control" placeholder="Masukkan jumlah" min="1" required>
                             </div>
 
-                            <div class="col-md-4">
+                            {{-- <div class="col-md-4">
                                 <label class="form-label">Harga Satuan</label>
-                                <input type="text" class="form-control" placeholder="Rp 0">
-                            </div>
+                                <input type="number" name="harga_satuan" class="form-control" placeholder="Rp 0" step="0.01" min="0">
+                            </div> --}}
 
                             <div class="col-md-4">
                                 <label class="form-label">To Warehouse</label>
-                                <select class="form-select">
-                                    <option selected>Pilih Warehouse Tujuan</option>
-                                    <option value="2">Gudang Utama</option>
-                                    <option value="3">Cabang 1</option>
-                                    <option value="4">Gudang Reject</option>
+                                <select name="id_gudang_tujuan" class="form-select" required>
+                                    <option value="">Pilih Warehouse Tujuan</option>
+                                    @foreach($gudangs as $gudang)
+                                        @if($gudang->id_gudang != 3) <!-- Exclude Gudang Reject -->
+                                            <option value="{{ $gudang->id_gudang }}">{{ $gudang->nama_gudang }}</option>
+                                        @endif
+                                    @endforeach
                                 </select>
                             </div>
 
                             <div class="col-md-12">
                                 <label class="form-label">Alasan</label>
-                                <textarea class="form-control" rows="3"
-                                    placeholder="Masukkan alasan atau catatan pengeluaran barang"></textarea>
+                                <textarea name="alasan" class="form-control" rows="3" placeholder="Masukkan alasan atau catatan pengeluaran barang"></textarea>
                             </div>
+
+                            <input type="hidden" name="id_gudang" value="4"> <!-- Gudang Utama -->
+                            <input type="hidden" name="id_user" value="{{ session('id_user') }}"> <!-- Dari session -->
                         </div>
 
                         <div class="mt-4 text-end">

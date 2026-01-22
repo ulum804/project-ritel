@@ -14,11 +14,15 @@ return new class extends Migration
         Schema::create('barang_keluar', function (Blueprint $table) {
             $table->id('id_barang_keluar');
             $table->dateTime('tanggal_keluar_in');
+            $table->integer('qty_keluar');
+            $table->decimal('harga_satuan', 10, 2)->nullable();
+            $table->string('alasan', 255)->nullable();
             $table->dateTime('tanggal_keluar_approve')->nullable();
             $table->enum('status_keluar', ['pending', 'setuju', 'tolak'])->default('pending');
-            $table->foreignId('id_barang')->constrained('barang','id_barang');
-            $table->foreignId('id_gudang')->constrained('gudang','id_gudang');
-            $table->foreignId('id_user')->constrained('userr','id_user');
+            $table->foreignId('id_barang')->constrained('barang', 'id_barang');
+            $table->foreignId('id_gudang')->constrained('gudang', 'id_gudang');
+            $table->foreignId('id_gudang_tujuan')->constrained('gudang', 'id_gudang');
+            $table->foreignId('id_user')->constrained('userr', 'id_user');
             $table->timestamps();
         });
     }

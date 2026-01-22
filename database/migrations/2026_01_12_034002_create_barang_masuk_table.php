@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('barang_masuk', function (Blueprint $table) {
             $table->id('id_barang_masuk');
             $table->dateTime('tanggal_masuk_in');
+            $table->string('nama_reseller',255);
+            $table->integer('Qty_masuk');
+            $table->string('alasan',255);
             $table->dateTime('tanggal_masuk_approve')->nullable();
             $table->enum('status_masuk', ['pending', 'setuju', 'tolak'])->default('pending');
             $table->foreignId('id_barang')->constrained('barang','id_barang');
