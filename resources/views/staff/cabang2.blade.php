@@ -13,18 +13,16 @@
     </style>
 </head>
 <body>
-    <!-- NAVBAR -->
+    <!-- TOP BAR -->
+    <!-- TOP BAR -->
     <nav class="navbar-custom">
         <button class="menu-toggle" onclick="toggleSidebar()">
             <i class="fas fa-list"></i>
         </button>
-
         <span class="navbar-brand">Leya Mart</span>
-
         <div class="warehouse-title">
-            <span>Gudang cabang 1</span>
+            <span>Warehouse 1</span>
         </div>
-
         <span class="user-profile">
             <i class="fas fa-user-circle"></i>
         </span>
@@ -32,18 +30,41 @@
 
     <!-- MAIN CONTAINER -->
     <div class="main-container">
-
         <!-- SIDEBAR -->
         <div class="sidebar-custom" id="sidebar">
             <ul class="sidebar-menu">
                 <li>
                     <a href="#" class="menu-link active">
-                        <i class="fas fa-home"></i> Dashboard
+                        <span><i class="fas fa-home"></i> Dashboard</span>
                     </a>
                 </li>
+                {{-- <li>
+                    <a href="#" class="menu-link" onclick="toggleSubmenu(event, 'warehouse-menu')">
+                        <span><i class="fas fa-warehouse"></i> Warehouse</span>
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </a>
+                    <ul class="submenu" id="warehouse-menu">
+                        <li><a href="#"><i class="fas fa-box"></i> Product</a></li>
+                    </ul>
+                </li>
                 <li>
-                    <a href="{{ '/' }}" class="menu-link">
-                        <i class="fas fa-sign-out-alt"></i> Sign out
+                    <a href="#" class="menu-link" onclick="toggleSubmenu(event, 'transaction-menu')">
+                        <span><i class="fas fa-exchange-alt"></i> Transaction</span>
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </a>
+                    <ul class="submenu" id="transaction-menu">
+                        <li><a href="#"><i class="fas fa-file-invoice"></i> Purchase Order</a></li>
+                        <li><a href="#"><i class="fas fa-shopping-cart"></i> Sales Order</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="menu-link">
+                        <span><i class="fas fa-chart-bar"></i> Report</span>
+                    </a>
+                </li> --}}
+                <li>
+                    <a href="{{'/'}}" class="menu-link">
+                        <span><i class="fas fa-sign-out-alt"></i> Sign out</span>
                     </a>
                 </li>
             </ul>
@@ -51,8 +72,7 @@
 
         <!-- CONTENT -->
         <div class="content">
-
-            <!-- WAREHOUSE INFO -->
+            <!-- Warehouse Info Alert -->
             <div class="warehouse-info" id="warehouseInfo">
                 <i class="fas fa-info-circle me-2"></i>
                 Anda sedang mengelola <strong>gudang cabang 1</strong>
@@ -61,17 +81,19 @@
             <!-- TAB NAVIGATION -->
             <div class="nav-tabs-custom">
                 <a href="javascript:void(0)" class="tab-link active" onclick="showTab('storage')">
-                    <i class="fas fa-boxes me-2"></i> Management Storage
+                    <i class="fas fa-boxes me-2"></i>Management Storage
                 </a>
                 <a href="javascript:void(0)" class="tab-link" onclick="showTab('purchase')">
-                    <i class="fas fa-file-invoice me-2"></i> Barang Masuk
+                    <i class="fas fa-file-invoice me-2"></i>Barang Masuk
                 </a>
                 <a href="javascript:void(0)" class="tab-link" onclick="showTab('sales')">
-                    <i class="fas fa-shopping-cart me-2"></i> Barang Keluar
+                    <i class="fas fa-shopping-cart me-2"></i>Barang Keluart
+                </a>
+                <a href="javascript:void(0)" class="tab-link" onclick="showTab('transfer')">
+                    <i class="fas fa-exchange-alt me-2"></i>form transefer 
                 </a>
             </div>
 
-            <!-- STORAGE TAB -->
             <div id="storage" class="tab-pane active">
                 <div class="storage-header">
                     <h2>Management Storage</h2>
@@ -91,7 +113,7 @@
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody >
                                     <tr>
                                         <td>1</td>
                                         <td>1</td>
@@ -107,128 +129,168 @@
                 </div>
             </div>
 
-            <!-- PURCHASE TAB -->
+            <!-- PURCHASE REPORT TAB -->
             <div id="purchase" class="tab-pane">
                 <div class="card report-card">
                     <div class="card-body">
-                        <div class="report-title">Form Barang Masuk</div>
-
-                        <form>
-                            <div class="row g-3">
-                                <div class="col-md-4">
-                                    <label class="form-label">From Warehouse</label>
-                                    <input type="text" class="form-control" placeholder="Gudang pertama" readonly>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <label class="form-label">Nama Produk</label>
-                                    <select class="form-select">
-                                        <option selected>Pilih Produk</option>
-                                    </select>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <label class="form-label">Tanggal Keluar</label>
-                                    <input type="date" class="form-control">
-                                </div>
-
-                                <div class="col-md-4">
-                                    <label class="form-label">Jumlah</label>
-                                    <input type="number" class="form-control" placeholder="Masukkan jumlah">
-                                </div>
-
-                                <div class="col-md-4">
-                                    <label class="form-label">Harga Satuan</label>
-                                    <input type="text" class="form-control" placeholder="Rp 0">
-                                </div>
-
-                                <div class="col-md-4">
-                                    <label class="form-label">To Warehouse</label>
-                                    <select class="form-select">
-                                        <option selected>Pilih Warehouse Tujuan</option>
-                                        <option value="2">Gudang Utama</option>
-                                        <option value="3">Cabang 1</option>
-                                        <option value="4">Gudang Reject</option>
-                                    </select>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <label class="form-label">Alasan</label>
-                                    <textarea class="form-control" rows="3"
-                                        placeholder="Masukkan alasan atau catatan pengeluaran barang"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="mt-4 text-end">
-                                <button type="reset" class="btn btn-secondary me-2">Reset</button>
-                                <button type="submit" class="btn btn-primary">Simpan</button>
-                            </div>
-                        </form>
+                        <div class="report-title">Pembelian Barang</div>
+                        <div class="table-responsive">
+                            <table class="table table-custom table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Product</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                        <th>Total</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>PO001</td>
+                                        <td>Minyak Goreng Tropical</td>
+                                        <td>50 unit</td>
+                                        <td>Rp 45.900</td>
+                                        <td>Rp 2.295.000</td>
+                                        <td>10-Jan-2025</td>
+                                    </tr>
+                                    <tr>
+                                        <td>PO002</td>
+                                        <td>Indomie Ayam Bawang</td>
+                                        <td>200 box</td>
+                                        <td>Rp 3.500</td>
+                                        <td>Rp 700.000</td>
+                                        <td>11-Jan-2025</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="date-info">
+                            DATE: 13 Januari 2025
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- SALES TAB -->
+            <!-- SALES REPORT TAB -->
             <div id="sales" class="tab-pane">
                 <div class="card report-card">
                     <div class="card-body">
-                        <div class="report-title">Form Barang Keluar</div>
-
-                        <form>
-                            <div class="row g-3">
-                                <div class="col-md-4">
-                                    <label class="form-label">From Warehouse</label>
-                                    <input type="text" class="form-control" placeholder="Gudang pertama" readonly>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <label class="form-label">Nama Produk</label>
-                                    <select class="form-select">
-                                        <option selected>Pilih Produk</option>
-                                    </select>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <label class="form-label">Tanggal Keluar</label>
-                                    <input type="date" class="form-control">
-                                </div>
-
-                                <div class="col-md-4">
-                                    <label class="form-label">Jumlah</label>
-                                    <input type="number" class="form-control" placeholder="Masukkan jumlah">
-                                </div>
-
-                                <div class="col-md-4">
-                                    <label class="form-label">Harga Satuan</label>
-                                    <input type="text" class="form-control" placeholder="Rp 0">
-                                </div>
-
-                                <div class="col-md-4">
-                                    <label class="form-label">To Warehouse</label>
-                                    <select class="form-select">
-                                        <option selected>Pilih Warehouse Tujuan</option>
-                                        <option value="2">Gudang Utama</option>
-                                        <option value="3">Cabang 1</option>
-                                        <option value="4">Gudang Reject</option>
-                                    </select>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <label class="form-label">Alasan</label>
-                                    <textarea class="form-control" rows="3"
-                                        placeholder="Masukkan alasan atau catatan pengeluaran barang"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="mt-4 text-end">
-                                <button type="reset" class="btn btn-secondary me-2">Reset</button>
-                                <button type="submit" class="btn btn-primary">Simpan</button>
-                            </div>
-                        </form>
+                        <div class="report-title">Penjualan Barang</div>
+                        <div class="table-responsive">
+                            <table class="table table-custom table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Product</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                        <th>Total</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>SO001</td>
+                                        <td>Teh Kotak</td>
+                                        <td>30 pcs</td>
+                                        <td>Rp 6.500</td>
+                                        <td>Rp 195.000</td>
+                                        <td>12-Jan-2025</td>
+                                    </tr>
+                                    <tr>
+                                        <td>SO002</td>
+                                        <td>Sprite 600ml</td>
+                                        <td>25 pcs</td>
+                                        <td>Rp 15.000</td>
+                                        <td>Rp 375.000</td>
+                                        <td>13-Jan-2025</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="date-info">
+                            DATE: 13 Januari 2025
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <!-- TRANSFER STOCK TAB -->
+            <div id="transfer" class="tab-pane">
+                <div class="transfer-form">
+                    <h4 style="margin-bottom: 25px; color: #333;">Pengajuan Transfer Stock</h4>
+                    <form onsubmit="">
+                        <div class="form-row">
+                            <div class="form-group-custom">
+                                <label>From Warehouse:</label>
+                                <input type="text" id="fromWarehouse" value="Warehouse 1" readonly>
+                            </div>
+                            <div class="form-group-custom">
+                                <label>To Warehouse:</label>
+                                <select id="" required>
+                                    <option value="">Pilih Warehouse Tujuan</option>
+                                    <option value="2">Gudang utama</option>
+                                    <option value="2">Cabang 1</option>
+                                    <option value="3">Cabang 2</option>
+                                    <option value="4">Gudang reject</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group-custom">
+                                <label>Product:</label>
+                                <select id="productSelect" required>
+                                    <option value="">Pilih Produk</option>
+                                </select>
+                            </div>
+                            <div class="form-group-custom">
+                                <label>Quantity:</label>
+                                <input type="number" id="quantity" placeholder="Masukkan jumlah" min="1" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group-custom">
+                            <label>Note:</label>
+                            <textarea id="note" placeholder="Catatan pengajuan..." rows="4"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-submit-custom"><i class="fas fa-paper-plane me-2"></i>Kirim Pengajuan</button>
+                    </form>
+
+                    <div style="margin-top: 30px;">
+                        <h5 style="color: #333; margin-bottom: 15px;">Riwayat Pengajuan Transfer</h5>
+                        <div class="table-responsive">
+                            <table class="table table-custom table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Product</th>
+                                        <th>From</th>
+                                        <th>To</th>
+                                        <th>Qty</th>
+                                        <th>Status</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>TR001</td>
+                                        <td>Indomie Ayam Bawang</td>
+                                        <td>WH 1</td>
+                                        <td>WH 2</td>
+                                        <td>50 box</td>
+                                        <td>Pending</td>
+                                        <td>05-Jan-2025</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -249,6 +311,79 @@
             arrow.classList.toggle('rotate');
         }
 
+        // Product Database\
+
+        // function renderProducts(productsToShow = products) {
+        //     const grid = document.getElementById('productsGrid');
+        //     grid.innerHTML = '';
+            
+        //     productsToShow.forEach(product => {
+        //         const stockClass = product.status === 'available' ? 'stock-available' : 
+        //                            product.status === 'low' ? 'stock-low' : 'stock-out';
+        //         const stockText = product.status === 'available' ? '✓ Tersedia' : 
+        //                           product.status === 'low' ? '⚠ Stok Rendah' : '✗ Habis';
+                
+        //         const card = document.createElement('div');
+        //         card.className = 'product-card';
+        //         card.innerHTML = `
+        //             <div class="product-image">${product.emoji}</div>
+        //             <div class="product-info">
+        //                 <div class="product-name">${product.name}</div>
+        //                 <div class="product-sku">${product.sku}</div>
+        //                 <div class="product-stock">
+        //                     <span class="stock-label">Stok:</span>
+        //                     <span class="stock-value">${product.stock}</span>
+        //                 </div>
+        //                 <div class="product-price">${product.price}</div>
+        //                 <span class="stock-status ${stockClass}">${stockText}</span>
+        //                 <div class="product-actions">
+        //                     <button class="btn-product btn-edit" onclick="editProduct(${product.id})">Edit</button>
+        //                     <button class="btn-product btn-delete" onclick="deleteProduct(${product.id})">Hapus</button>
+        //                 </div>
+        //             </div>
+        //         `;
+        //         grid.appendChild(card);
+        //     });
+        // }
+
+        // function searchProducts() {
+        //     const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+        //     const filtered = products.filter(p => 
+        //         p.name.toLowerCase().includes(searchTerm) || 
+        //         p.sku.toLowerCase().includes(searchTerm)
+        //     );
+        //     renderProducts(filtered);
+        // }
+
+        // function editProduct(id) {
+        //     alert('Edit product ID: ' + id);
+        // }
+
+        // function deleteProduct(id) {
+        //     alert('Delete product ID: ' + id);
+        // }
+
+        // function toggleSidebar() {
+        //     const sidebar = document.getElementById('sidebar');
+        //     sidebar.classList.toggle('active');
+        // }
+
+        // function updateWarehouseOptions() {
+        //     if (currentWarehouse === 1) {
+        //         document.getElementById('toWarehouse').innerHTML = `
+        //             <option value="">Pilih Warehouse Tujuan</option>
+        //             <option value="2">Warehouse 2</option>
+        //             <option value="3">Warehouse 3</option>
+        //             <option value="4">Warehouse 4</option>
+        //         `;
+        //     } else if (currentWarehouse >= 2) {
+        //         document.getElementById('toWarehouse').innerHTML = `
+        //             <option value="">Pilih Warehouse Asal</option>
+        //             <option value="1">Warehouse 1</option>
+        //         `;
+        //     }
+        // }
+
         function showTab(tabName) {
             const tabs = document.querySelectorAll('.tab-pane');
             tabs.forEach(tab => tab.classList.remove('active'));
@@ -260,6 +395,30 @@
             event.target.classList.add('active');
         }
 
+        // function submitTransfer(event) {
+        //     event.preventDefault();
+        //     const toWarehouse = document.getElementById('toWarehouse').value;
+        //     const product = document.getElementById('productSelect').value;
+        //     const quantity = document.getElementById('quantity').value;
+        //     const note = document.getElementById('note').value;
+
+        //     if (!toWarehouse || !product || !quantity) {
+        //         alert('Mohon isi semua field yang diperlukan');
+        //         return;
+        //     }
+
+        //     alert(`Pengajuan transfer berhasil!\nDari: Warehouse ${currentWarehouse}\nKe: Warehouse ${toWarehouse}\nProduk: ${product}\nJumlah: ${quantity}`);
+        //     document.getElementById('toWarehouse').value = '';
+        //     document.getElementById('productSelect').value = '';
+        //     document.getElementById('quantity').value = '';
+        //     document.getElementById('note').value = '';
+        // }
+
+        // Initialize
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     renderProducts();
+        //     updateWarehouseOptions();
+        // });
 
         // Close dropdown when clicking outside
         document.addEventListener('click', function(event) {
