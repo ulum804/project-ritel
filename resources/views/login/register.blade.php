@@ -25,28 +25,32 @@
                 <span class="input-group-text"><i class="bi bi-telephone-fill"></i></span>
                 <input type="number" name="telepon" class="form-control" placeholder="Telepon">
             </div>
-           <div  class="mb-3 input-group">
-                <span class="input-group-text">
-                    <i class="bi bi-person-badge-fill"></i>
-                </span>
-                <select name="jabatan" id="jabatan" class="form-select mb-3" required>
-                    <option value="" disabled selected>Pilih Jabatan</option>
-                    <option value="staff_gudang">Staff Gudang</option>
-                    <option value="kepala_gudang">Kepala Gudang</option>
-                    <option value="admin">Admin</option>
-                </select>
+            <div class="mb-3">
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="bi bi-person-badge-fill"></i>
+                    </span>
+                    <select name="jabatan" id="jabatan" class="form-select" required>
+                        <option value="" disabled selected>Pilih Jabatan</option>
+                        <option value="staff_gudang">Staff Gudang</option>
+                        <option value="kepala_gudang">Kepala Gudang</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
             </div>
-           <div id="gudangWrapper" class="mb-3 input-group">
+           <div class="mb-3" id="gudangWrapper" style="display:none;">
+            <div class="input-group">
                 <span class="input-group-text">
-                    <i class="bi bi-person-badge-fill"></i>
+                    <i class="bi bi-building"></i>
                 </span>
-                <select name="id_gudang" class="form-select mb-3">
+                <select name="id_gudang" class="form-select">
                     <option value="">Pilih Gudang</option>
                     @foreach ($gudangs as $g)
                         <option value="{{ $g->id_gudang }}">{{ $g->nama_gudang }}</option>
                     @endforeach
                 </select>
             </div>
+        </div>
             {{-- <div id="gudangWrapper" style="display:none">
                 <select name="id_gudang" class="form-select mb-3">
                     <option value="">Pilih Gudang</option>
