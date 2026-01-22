@@ -10,7 +10,12 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    /* =====================
+    public function index()
+    {
+        $users = UserModel::with(['role', 'gudang'])->get();
+        return view('admin.manajemen', compact('users'));
+    }
+        /* =====================
      * FORM REGISTER
      * ===================== */
     public function create()
@@ -121,4 +126,11 @@ class UserController extends Controller
         session()->flush();
         return redirect('/login');
     }
+    public function destroy($id)
+    {
+        // dd('MASUK DESTROY', $id);
+        UserModel::where('id_user', $id)->delete();
+        return back()->with('success', 'User berhasil dihapus');
+    }
+
 }

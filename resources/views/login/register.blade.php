@@ -22,7 +22,7 @@
                 <input type="text" name="nama_user" class="form-control" placeholder="Username">
             </div>
             <div class="mb-3 input-group">
-                <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+                <span class="input-group-text"><i class="bi bi-telephone-fill"></i></span>
                 <input type="number" name="telepon" class="form-control" placeholder="Telepon">
             </div>
            <div  class="mb-3 input-group">
