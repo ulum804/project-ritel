@@ -19,9 +19,23 @@ class KeluarController extends Controller
 
     public function create()
     {
+        $userGudang = session('user_gudang');
+
+        // Map gudang to view
+        $viewMap = [
+            1 => 'staff.cabang2',
+            2 => 'staff.cabang3',
+            3 => 'staff.reject',
+            4 => 'staff.utama',
+        ];
+
+        if (!isset($viewMap[$userGudang])) {
+            abort(403, 'Akses ditolak');
+        }
+
         $barangs = BarangModel::all();
         $gudangs = GudangModel::all();
-        return view('staff.utama', compact('barangs', 'gudangs'));
+        return view($viewMap[$userGudang], compact('barangs', 'gudangs'));
     }
     public function store(Request $request)
     {
@@ -43,8 +57,8 @@ class KeluarController extends Controller
 
         // Cek stok di gudang asal
         $stokAsal = StokModel::where('id_gudang', $validatedData['id_gudang'])
-                             ->where('id_barang', $validatedData['id_barang'])
-                             ->first();
+            ->where('id_barang', $validatedData['id_barang'])
+            ->first();
 
         if (!$stokAsal || $stokAsal->qty_stok < $validatedData['qty_keluar']) {
             return redirect()->back()->with('error', 'Stok tidak cukup di gudang asal.');
@@ -59,8 +73,8 @@ class KeluarController extends Controller
 
         // Tambah stok di gudang tujuan
         $stokTujuan = StokModel::where('id_gudang', $validatedData['id_gudang_tujuan'])
-                               ->where('id_barang', $validatedData['id_barang'])
-                               ->first();
+            ->where('id_barang', $validatedData['id_barang'])
+            ->first();
 
         if ($stokTujuan) {
             $stokTujuan->qty_stok += $validatedData['qty_keluar'];
