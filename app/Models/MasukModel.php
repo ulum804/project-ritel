@@ -7,15 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class MasukModel extends Model
 {
     protected $table = 'barang_masuk';
-    protected $primaryKey = 'id_masuk';
+    protected $primaryKey = 'id_barang_masuk';
     protected $fillable = [
         'tanggal_masuk_in',
-        'tanggal_approve_in',
-        'qty_masuk',
+        'nama_reseller',
+        'Qty_masuk',
+        'alasan',
+        'tanggal_masuk_approve',
         'status_masuk',
+        'id_barang',
         'id_gudang',
-        'id_user',
-        'id_barang'
+        'id_user'
     ];
     public function barang()
     {

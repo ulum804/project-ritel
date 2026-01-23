@@ -15,7 +15,7 @@ class UserController extends Controller
         $users = UserModel::with(['role', 'gudang'])->get();
         return view('admin.manajemen', compact('users'));
     }
-        /* =====================
+    /* =====================
      * FORM REGISTER
      * ===================== */
     public function create()
@@ -95,11 +95,12 @@ class UserController extends Controller
         ]);
 
         // Redirect berdasarkan role
-        if ($user->role->jabatan === 'admin') {
+        $jabatan = strtolower($user->role->jabatan);
+        if ($jabatan === 'admin') {
             return redirect('/admin/laporan');
         }
 
-        if ($user->role->jabatan === 'kepala_gudang') {
+        if ($jabatan === 'kepala_gudang') {
             return redirect('/kepala/warehouse1');
         }
 
@@ -107,7 +108,7 @@ class UserController extends Controller
             case 1:
                 return redirect('/staff/cabang2');
             case 2:
-                 return redirect('/staff/cabang3');
+                return redirect('/staff/cabang3');
             case 3:
                 return redirect('/staff/reject');
             case 4:
@@ -115,7 +116,6 @@ class UserController extends Controller
             default:
                 return abort(403, 'Gudang tidak dikenali');
         }
-
     }
 
     /* =====================
@@ -132,5 +132,4 @@ class UserController extends Controller
         UserModel::where('id_user', $id)->delete();
         return back()->with('success', 'User berhasil dihapus');
     }
-
 }

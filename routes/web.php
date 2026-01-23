@@ -1,7 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\MasukController;
+use App\Http\Controllers\KeluarController;
+use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -80,10 +82,17 @@ Route::get('/kepala/warehouse4', function () {
 //     return view('staff.reject');
 // });
 
-Route::get('/staff/utama', function () {return view('staff.utama');});
-Route::get('/staff/cabang2', function () {return view('staff.cabang2');});
-Route::get('/staff/cabang3', function () {return view('staff.cabang3');});
-Route::get('/staff/reject', function () {return view('staff.reject');});
+Route::get('/staff/utama', [KeluarController::class, 'create'])->name('staff.utama');
+Route::get('/staff/cabang2', [KeluarController::class, 'create'])->name('staff.cabang2');
+Route::get('/staff/cabang3', [KeluarController::class, 'create'])->name('staff.cabang3');
+Route::get('/staff/reject', [KeluarController::class, 'create'])->name('staff.reject');
+Route::post('/staff/barang-masuk', [MasukController::class, 'store'])
+    ->middleware('auth.check')
+    ->name('barang.masuk.store');
+Route::post('/staff/barang-keluar', [KeluarController::class, 'store'])
+    ->middleware('auth.check')
+    ->name('barang.keluar.store');
+
 
 
 // Route::get('/kepala', function () {
@@ -107,9 +116,13 @@ Route::get('/staff/reject', function () {return view('staff.reject');});
 
 
 // admin
-Route::get('/admin/laporan', function () {return view('admin.laporan');})->middleware('auth.check')->name('admin.laporan');
+Route::get('/admin/laporan', function () {
+    return view('admin.laporan');
+})->middleware('auth.check')->name('admin.laporan');
 Route::get('/admin/manajemen', [UserController::class, 'index'])->middleware('auth.check')->name('admin.manajemen');
-Route::get('/admin/stok', function () {return view('admin.stok');})->middleware('auth.check')->name('admin.stok');
+Route::get('/admin/stok', function () {
+    return view('admin.stok');
+})->middleware('auth.check')->name('admin.stok');
 Route::delete('/admin/user/{id}', [UserController::class, 'destroy'])->middleware('auth.check')->name('user.destroy');
 
 

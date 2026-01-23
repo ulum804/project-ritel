@@ -12,18 +12,25 @@ class KeluarModel extends Model
         'tanggal_keluar_in',
         'tanggal_approve_out',
         'qty_keluar',
+        'alasan',
+        'harga_satuan',
         'status_keluar',
+        'id_barang',
         'id_gudang',
-        'id_user',
-        'id_barang'
+        'id_gudang_tujuan',
+        'id_user'
     ];
-     public function barang()
+    public function barang()
     {
         return $this->belongsTo(BarangModel::class, 'id_barang');
     }
     public function gudang()
     {
         return $this->belongsTo(GudangModel::class, 'id_gudang');
+    }
+    public function gudangTujuan()
+    {
+        return $this->belongsTo(GudangModel::class, 'id_gudang_tujuan');
     }
     public function user()
     {

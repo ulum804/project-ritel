@@ -127,7 +127,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>  
 
             <!-- SALES REPORT TAB -->
             <div id="sales" class="tab-pane">
