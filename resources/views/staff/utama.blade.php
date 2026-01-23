@@ -88,9 +88,6 @@
                                     @foreach($gudangs as $gudang)
                                         <th>Stok {{ $gudang->nama_gudang }}</th>
                                     @endforeach
-                                    {{-- <th>Harga</th> --}}
-                                    {{-- <th>Status</th> --}}
-                                    {{-- <th>Aksi</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
@@ -100,10 +97,8 @@
                                         <td>{{ $barang->kode_barang }}</td>
                                         @foreach($gudangs as $gudang)
                                             @php
-                                                // stok barang di gudang tertentu
-                                                $masuk = $barang->barangMasuk->where('id_gudang', $gudang->id_gudang)->sum('Qty_masuk');
-                                                $keluar = $barang->barangKeluar->where('id_gudang', $gudang->id_gudang)->sum('Qty_keluar');
-                                                $stok = $masuk - $keluar;
+                                                // stok barang di gudang tertentu dari StokModel
+                                                $stok = \App\Models\StokModel::where('id_gudang', $gudang->id_gudang)->where('id_barang', $barang->id_barang)->value('qty_stok') ?? 0;
                                             @endphp
                                             <td>{{ $stok }}</td>
                                         @endforeach

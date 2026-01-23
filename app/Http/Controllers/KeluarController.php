@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\KeluarModel;
 use App\Models\BarangModel;
 use App\Models\GudangModel;
+use App\Models\StokModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -40,8 +41,37 @@ class KeluarController extends Controller
 
         Log::info('Validated Data:', $validatedData);
 
+        // Cek stok di gudang asal
+        $stokAsal = StokModel::where('id_gudang', $validatedData['id_gudang'])
+                             ->where('id_barang', $validatedData['id_barang'])
+                             ->first();
+
+        if (!$stokAsal || $stokAsal->qty_stok < $validatedData['qty_keluar']) {
+            return redirect()->back()->with('error', 'Stok tidak cukup di gudang asal.');
+        }
+
         $validatedData['status_keluar'] = 'pending'; // default status
         $keluar = KeluarModel::create($validatedData);
+
+        // Kurangi stok di gudang asal
+        $stokAsal->qty_stok -= $validatedData['qty_keluar'];
+        $stokAsal->save();
+
+        // Tambah stok di gudang tujuan
+        $stokTujuan = StokModel::where('id_gudang', $validatedData['id_gudang_tujuan'])
+                               ->where('id_barang', $validatedData['id_barang'])
+                               ->first();
+
+        if ($stokTujuan) {
+            $stokTujuan->qty_stok += $validatedData['qty_keluar'];
+            $stokTujuan->save();
+        } else {
+            StokModel::create([
+                'qty_stok' => $validatedData['qty_keluar'],
+                'id_gudang' => $validatedData['id_gudang_tujuan'],
+                'id_barang' => $validatedData['id_barang']
+            ]);
+        }
 
         Log::info('Data berhasil disimpan:', $keluar->toArray());
 

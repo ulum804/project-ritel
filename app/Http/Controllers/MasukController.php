@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\MasukModel;
 use App\Models\BarangModel;
+use App\Models\StokModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -48,6 +49,22 @@ class MasukController extends Controller
 
         $validatedData['status_masuk'] = 'pending'; // default status
         $masuk = MasukModel::create($validatedData);
+
+        // Update stok gudang tujuan
+        $stok = StokModel::where('id_gudang', $validatedData['id_gudang'])
+                         ->where('id_barang', $validatedData['id_barang'])
+                         ->first();
+
+        if ($stok) {
+            $stok->qty_stok += $validatedData['Qty_masuk'];
+            $stok->save();
+        } else {
+            StokModel::create([
+                'qty_stok' => $validatedData['Qty_masuk'],
+                'id_gudang' => $validatedData['id_gudang'],
+                'id_barang' => $validatedData['id_barang']
+            ]);
+        }
 
         Log::info('Data berhasil disimpan:', $masuk->toArray());
 
