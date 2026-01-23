@@ -866,7 +866,7 @@
                                 <textarea name="alasan" class="form-control" rows="3" placeholder="Masukkan alasan atau catatan pengeluaran barang"></textarea>
                             </div>
 
-                            <input type="hidden" name="id_gudang" value="4"> <!-- Gudang Utama -->
+                            <input type="hidden" name="id_gudang" value="3"> <!-- Gudang Reject -->
                             <input type="hidden" name="id_user" value="{{ session('id_user') }}"> <!-- Dari session -->
                         </div>
 

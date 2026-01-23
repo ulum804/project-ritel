@@ -5,15 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\BarangModel;
 use App\Models\GudangModel;
 use App\Models\MasukModel;
+use App\Models\StokModel;
 use Illuminate\Http\Request;
 
 class BarangController extends Controller
 {
     public function index()
     {
-        $barangs = BarangModel::with(['barangModel', 'KeluarModel', 'gudangModel'])->get();
-        $gudangs = GudangModel::all(); // untuk header tabel
-        return view('barang.index', compact('barangs', 'gudangs'));
+        $barangs = BarangModel::all();
+        $gudangs = GudangModel::all();
+
+        $stoks = StokModel::all()->keyBy(function ($stok) {
+            return $stok->id_barang . '-' . $stok->id_gudang;
+        });
+
+        return view('staff.utama', compact('barangs', 'gudangs', 'stoks'));
     }
     public function store(Request $request)
     {

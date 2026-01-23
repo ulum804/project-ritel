@@ -1,3 +1,4 @@
 - [x] Fix access issue for staff gudang abang 1 to access cabang2.blade.php by modifying KeluarController::create to return correct view based on session('user_gudang')
+- [x] Fix stock table not updating for cabang2, cabang3, reject by correcting id_gudang hidden inputs in forms
 - [ ] Fix index method: change 'userr' to 'user' in with() clause
 - [ ] Fix store method: change $validated to $validatedData and set id_user and status_masuk on $validatedData
