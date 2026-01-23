@@ -290,33 +290,38 @@
         </div>
     </nav>
 
-    <!-- MAIN CONTAINER -->
+<!-- MAIN CONTAINER -->
     <div class="main-container">
-<div class="sidebar-custom" id="sidebar" style="display:flex; flex-direction:column; height:100%;">
-    
-    <!-- MENU -->
-    <div style="flex:1; overflow-y:auto;">
-         <a href="{{ route('admin.manajemen') }}" class="sidebar-item">
+        <!-- SIDEBAR -->
+        <div
+            class="sidebar-custom"
+            id="sidebar"
+            style="display:flex; flex-direction:column; height:100%;"
+        >
+            <div style="flex:1; overflow-y:auto;">
+                <a href="{{ route('admin.manajemen') }}" class="sidebar-item">
                     <i class="bi bi-people"></i> Manajemen User
                 </a>
-                <a href="{{ route('admin.laporan') }}" class="sidebar-item">
+
+                <a href="{{ route('admin.laporan') }}" class="sidebar-item ">
                     <i class="bi bi-file-earmark-text"></i> Laporan
                 </a>
+
                 <a href="{{ route('admin.stok') }}" class="sidebar-item active">
-                    <i class="bi bi-boxes"></i> Stok gudang
+                    <i class="bi bi-boxes"></i> Stok Gudang
                 </a>
 
-        <!-- LOGOUT BUTTON (MOVED UP) -->
-        <div style="padding:20px 15px 25px; border-top:1px solid #eee; margin-top: 20px;">
-            <button class="sidebar-item w-100 text-start logout-btn"
-                    onclick="logoutDummy()">
-                <i class="bi bi-box-arrow-right"></i> Logout
-            </button>
+                <!-- LOGOUT -->
+              <a href="{{'/'}}" class="sidebar-item">
+                <i class="bi bi-building"></i> Logout
+            </a>
+            </div>
         </div>
-    </div>
 
-</div>
 
+
+
+<!-- content -->
 
        <div class="content">
     <div class="page-title">Stok Gudang</div>
@@ -351,6 +356,6 @@
             </table>
         </div>
     </div>
-</div>
+
 </body>
 </html>
