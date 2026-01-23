@@ -196,7 +196,7 @@
                         <div class="row g-3">
                             <div class="col-md-4">
                                 <label class="form-label">From Warehouse</label>
-                                <input type="text" class="form-control" placeholder="Gudang cabang 2" readonly>
+                                <input type="text" class="form-control" placeholder="Gudang Utama" readonly>
                             </div>
 
                             <div class="col-md-4">

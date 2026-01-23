@@ -84,22 +84,30 @@
                                 <thead>
                                     <tr>
                                         <th>Produk</th>
-                                        <th>SKU</th>
-                                        <th>Stok</th>
-                                        <th>Harga</th>
-                                        <th>Status</th>
-                                        <th>Aksi</th>
+                                        <th>kode</th>
+                                        @foreach($gudangs as $gudang)
+                                            <th>Stok {{ $gudang->nama_gudang }}</th>
+                                        @endforeach
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                    </tr>
+                                    @forelse($barangs as $barang)
+                                        <tr>
+                                            <td>{{ $barang->nama_barang }}</td>
+                                            <td>{{ $barang->kode_barang }}</td>
+                                            @foreach($gudangs as $gudang)
+                                                @php
+                                                    // stok barang di gudang tertentu dari StokModel
+                                                    $stok = \App\Models\StokModel::where('id_gudang', $gudang->id_gudang)->where('id_barang', $barang->id_barang)->value('qty_stok') ?? 0;
+                                                @endphp
+                                                <td>{{ $stok }}</td>
+                                            @endforeach
+                                        </tr>
+                                                @empty
+                                        <tr>
+                                            <td colspan="3" class="text-center">Tidak ada data</td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
@@ -186,12 +194,12 @@
                     @endif
                     <div class="report-title">Form Barang Keluar</div>
 
-                    <form action="{{ route('barang.keluar.store') }}" method="POST">
+                     <form action="{{ route('barang.keluar.store') }}" method="POST">
                         @csrf
                         <div class="row g-3">
                             <div class="col-md-4">
                                 <label class="form-label">From Warehouse</label>
-                                <input type="text" class="form-control" placeholder="Gudang Utama" readonly>
+                                <input type="text" class="form-control" placeholder="Gudang Cabang 1" readonly>
                             </div>
 
                             <div class="col-md-4">
@@ -224,7 +232,7 @@
                                 <select name="id_gudang_tujuan" class="form-select" required>
                                     <option value="">Pilih Warehouse Tujuan</option>
                                     @foreach($gudangs as $gudang)
-                                        @if($gudang->id_gudang != 1) <!-- Exclude Cabang 1 -->
+                                        @if($gudang->id_gudang != 1) <!-- Exclude Gudang Utama -->
                                             <option value="{{ $gudang->id_gudang }}">{{ $gudang->nama_gudang }}</option>
                                         @endif
                                     @endforeach
@@ -236,7 +244,7 @@
                                 <textarea name="alasan" class="form-control" rows="3" placeholder="Masukkan alasan atau catatan pengeluaran barang"></textarea>
                             </div>
 
-                            <input type="hidden" name="id_gudang" value="1"> <!-- Cabang 1 -->
+                            <input type="hidden" name="id_gudang" value="4"> <!-- Gudang Utama -->
                             <input type="hidden" name="id_user" value="{{ session('id_user') }}"> <!-- Dari session -->
                         </div>
 
