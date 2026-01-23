@@ -14,8 +14,21 @@ class BarangModel extends Model
         'nama_barang'
     ];
 
-    public function stok()
+       // Relasi ke barang masuk
+    public function barangMasuk()
     {
-        return $this->hasMany(StokModel::class, 'id_barang');
+        return $this->hasMany(MasukModel::class, 'id_barang', 'id_barang');
+    }
+
+    // Relasi ke barang keluar
+    public function barangKeluar()
+    {
+        return $this->hasMany(KeluarModel::class, 'id_barang', 'id_barang');
+    }
+
+    // Relasi ke gudang
+    public function gudang()
+    {
+        return $this->belongsTo(KeluarModel::class, 'id_gudang', 'id_gudang');
     }
 }

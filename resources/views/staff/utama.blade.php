@@ -84,22 +84,35 @@
                             <thead>
                                 <tr>
                                     <th>Produk</th>
-                                    <th>SKU</th>
-                                    <th>Stok</th>
-                                    <th>Harga</th>
-                                    <th>Status</th>
-                                    <th>Aksi</th>
+                                    <th>kode</th>
+                                    @foreach($gudangs as $gudang)
+                                        <th>Stok {{ $gudang->nama_gudang }}</th>
+                                    @endforeach
+                                    {{-- <th>Harga</th> --}}
+                                    {{-- <th>Status</th> --}}
+                                    {{-- <th>Aksi</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
+                                @forelse($barangs as $barang)
+                                    <tr>
+                                        <td>{{ $barang->nama_barang }}</td>
+                                        <td>{{ $barang->kode_barang }}</td>
+                                        @foreach($gudangs as $gudang)
+                                            @php
+                                                // stok barang di gudang tertentu
+                                                $masuk = $barang->barangMasuk->where('id_gudang', $gudang->id_gudang)->sum('Qty_masuk');
+                                                $keluar = $barang->barangKeluar->where('id_gudang', $gudang->id_gudang)->sum('Qty_keluar');
+                                                $stok = $masuk - $keluar;
+                                            @endphp
+                                            <td>{{ $stok }}</td>
+                                        @endforeach
+                                    </tr>
+                                            @empty
+                                    <tr>
+                                        <td colspan="3" class="text-center">Tidak ada data</td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>

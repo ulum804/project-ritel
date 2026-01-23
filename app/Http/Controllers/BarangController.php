@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BarangModel;
+use App\Models\GudangModel;
 use App\Models\MasukModel;
 use Illuminate\Http\Request;
 
@@ -10,8 +11,9 @@ class BarangController extends Controller
 {
     public function index()
     {
-        $barang = BarangModel::all();
-        return view('barang.index', compact('barang'));
+        $barangs = BarangModel::with(['barangModel', 'KeluarModel', 'gudangModel'])->get();
+        $gudangs = GudangModel::all(); // untuk header tabel
+        return view('barang.index', compact('barangs', 'gudangs'));
     }
     public function store(Request $request)
     {
