@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MasukController;
 use App\Http\Controllers\KeluarController;
@@ -120,9 +121,7 @@ Route::get('/admin/laporan', function () {
     return view('admin.laporan');
 })->middleware('auth.check')->name('admin.laporan');
 Route::get('/admin/manajemen', [UserController::class, 'index'])->middleware('auth.check')->name('admin.manajemen');
-Route::get('/admin/stok', function () {
-    return view('admin.stok');
-})->middleware('auth.check')->name('admin.stok');
+Route::get('/admin/stok', [AdminController::class, 'stok'])->middleware('auth.check')->name('admin.stok');
 Route::delete('/admin/user/{id}', [UserController::class, 'destroy'])->middleware('auth.check')->name('user.destroy');
 
 

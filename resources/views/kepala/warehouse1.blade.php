@@ -71,11 +71,11 @@
                             <table class="table table-custom table-hover">
                                 <thead>
                                     <tr>
-                                        <th>ID Order</th>
-                                        <th>Product</th>
-                                        <th>Quantity</th>
+                                        <th>ID barang</th>
+                                        <th>Nama Barang</th>
+                                        <th>Jumlah</th>
                                         <th>Alasan</th>
-                                        <th>Total Status</th>
+                                        <th>Tanggal Masuk</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -84,47 +84,21 @@
                                         <td>#KY9W</td>
                                         <td>Minyak Sunmit 1ltr</td>
                                         <td>4 pack</td>
-                                        <td>Waiting for confirmation</td>
-                                        <td>Rp. 867,000.00</td>
+                                        <td>stok menipis</td>
+                                        <td>25-01-2007</td>
                                         <td>
                                             <div class="btn-action-group">
                                                 <button class="btn btn-danger btn-small">TOLAK</button>
                                                 <button class="btn btn-success btn-small">TERIMA</button>
                                             </div>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#EBG2</td>
-                                        <td>Cimory yogurt strawberry</td>
-                                        <td>50 pcs</td>
-                                        <td>Delivery confirmation</td>
-                                        <td>Rp. 255,000.00</td>
-                                        <td>
-                                            <div class="btn-action-group">
-                                                <button class="btn btn-danger btn-small">TOLAK</button>
-                                                <button class="btn btn-success btn-small">TERIMA</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#TDH1</td>
-                                        <td>Gorilla coffee</td>
-                                        <td>2 pack</td>
-                                        <td>Delivery validate stock</td>
-                                        <td>Rp. 425,000.00</td>
-                                        <td>
-                                            <div class="btn-action-group">
-                                                <button class="btn btn-danger btn-small">TOLAK</button>
-                                                <button class="btn btn-success btn-small">TERIMA</button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    </tr>  
                                 </tbody>
                             </table>
                         </div>
-                        <div class="date-info">
+                        {{-- <div class="date-info">
                             DATE: 13 Januari 2025
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>  

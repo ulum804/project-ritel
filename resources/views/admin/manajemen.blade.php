@@ -14,9 +14,9 @@
     <!-- TOP BAR -->
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
         <div class="container-fluid">
-            <button class="menu-toggle" onclick="toggleSidebar()">
+            {{-- <button class="menu-toggle" onclick="toggleSidebar()">
                 <i class="bi bi-list"></i>
-            </button>
+            </button> --}}
 
             <span class="navbar-brand mb-0">Leya Mart</span>
 

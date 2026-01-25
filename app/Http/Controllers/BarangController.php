@@ -14,7 +14,7 @@ class BarangController extends Controller
     {
         $barangs = BarangModel::all();
         $gudangs = GudangModel::all();
-
+  
         $stoks = StokModel::all()->keyBy(function ($stok) {
             return $stok->id_barang . '-' . $stok->id_gudang;
         });
