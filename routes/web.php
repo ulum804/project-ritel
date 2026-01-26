@@ -1,131 +1,91 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MasukController;
 use App\Http\Controllers\KeluarController;
-use Illuminate\Support\Facades\Route;
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-Route::get('/', function () {
-
-    return view('login.login');
-});
-Route::get('/register', function () {
-    return view('login.registrasi');
-});
-Route::get('/staff/dashboard', function () {
-    return view('staff.dashboard');
-});
 
 
-Route::get('/register', [UserController::class, 'create'])
-    ->name('register');
-
-Route::post('/register', [UserController::class, 'store'])
-    ->name('register.store');
+// AUTH & PUBLIC
+Route::get('/', fn () => view('login.login'));
 
 Route::get('/login', [UserController::class, 'showLoginForm'])->name('login.form');
 Route::post('/login', [UserController::class, 'login'])->name('login.store');
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
-// Route dashboard contoh
-// Route::get('staff/dashboard', function () {
-//     return view('staff.dashboard');
-// })->middleware('auth.check'); // nanti bisa buat middleware auth
-
-Route::get('/kepala/dashboard', function () {
-    return view('kepala.dashboard');
-})->middleware('auth.check')->name('kepala.dashboard');
-Route::get('/kepala/warehouse1', function () {
-    return view('kepala.warehouse1');
-})->middleware('auth.check')->name('warehouse1');
-Route::get('/kepala/warehouse2', function () {
-    return view('kepala.warehouse2');
-})->middleware('auth.check')->name('warehouse2');
-Route::get('/kepala/warehouse3', function () {
-    return view('kepala.warehouse3');
-})->middleware('auth.check')->name('warehouse3');
-Route::get('/kepala/warehouse4', function () {
-    return view('kepala.warehouse4');
-})->middleware('auth.check')->name('warehouse4');
-
-// Route::get('/staff/utama', function () {
-//     return view('staff.utama');
-// })->middleware('auth.check')->name('utama');
-// Route::get('/staff/cabang2', function () {
-//     return view('staff.cabang2');
-// })->middleware('auth.check')->name('cabang2');
-// Route::get('/staff/staff3', function () {
-//     return view('staff.staff3');
-// })->middleware('auth.check')->name('staff3');
-// Route::get('/staff/staff4', function () {
-//     return view('staff.staff4');
-// })->middleware('auth.check')->name('staff4');
-
-// Route::get('/staff/utama', function () {
-//     abort_if(session('user_gudang') != 4, 403);
-//     return view('staff.utama');
-// });
-// Route::get('/staff/cabang1', function () {
-//     abort_if(session('user_gudang') != 1, 403);
-//     return view('staff.cabang1');
-// });
-// Route::get('/staff/cabang2', function () {
-//     abort_if(session('user_gudang') != 2, 403);
-//     return view('staff.utama');
-// });
-// Route::get('/staff/reject', function () {
-//     abort_if(session('user_gudang') != 3, 403);
-//     return view('staff.reject');
-// });
-
-Route::get('/staff/utama', [KeluarController::class, 'create'])->name('staff.utama');
-Route::get('/staff/cabang2', [KeluarController::class, 'create'])->name('staff.cabang2');
-Route::get('/staff/cabang3', [KeluarController::class, 'create'])->name('staff.cabang3');
-Route::get('/staff/reject', [KeluarController::class, 'create'])->name('staff.reject');
-Route::post('/staff/barang-masuk', [MasukController::class, 'store'])
-    ->middleware('auth.check')
-    ->name('barang.masuk.store');
-Route::post('/staff/barang-keluar', [KeluarController::class, 'store'])
-    ->middleware('auth.check')
-    ->name('barang.keluar.store');
+Route::get('/register', [UserController::class, 'create'])->name('register');
+Route::post('/register', [UserController::class, 'store'])->name('register.store');
 
 
+// Staff
+Route::middleware('auth.check')->group(function () {
 
-// Route::get('/kepala', function () {
-//     return view('kepala.warehouse1');
-// });
-// Route::get('/warehouse-1', function () {
-//     return view('warehouse.warehouse-1');
-// })->name('warehouse.1');
+    Route::get('/staff/dashboard', fn () => view('staff.dashboard'));
 
-// Route::get('/warehouse-2', function () {
-//     return view('warehouse.warehouse-2');
-// })->name('warehouse.2');
+    Route::get('/staff/utama', [KeluarController::class, 'create'])->name('staff.utama');
+    Route::get('/staff/cabang2', [KeluarController::class, 'create'])->name('staff.cabang2');
+    Route::get('/staff/cabang3', [KeluarController::class, 'create'])->name('staff.cabang3');
+    Route::get('/staff/reject', [KeluarController::class, 'create'])->name('staff.reject');
 
-// Route::get('/warehouse-3', function () {
-//     return view('warehouse.warehouse-3');
-// })->name('warehouse.3');
+    Route::post('/staff/barang-masuk', [MasukController::class, 'store'])
+        ->name('barang.masuk.store');
 
-// Route::get('/warehouse-4', function () {
-//     return view('warehouse.warehouse-4');
-// })->name('warehouse.4');
+    Route::post('/staff/barang-keluar', [KeluarController::class, 'store'])
+        ->name('barang.keluar.store');
+});
 
 
-// admin
-Route::get('/admin/laporan', function () {
-    return view('admin.laporan');
-})->middleware('auth.check')->name('admin.laporan');
-Route::get('/admin/manajemen', [UserController::class, 'index'])->middleware('auth.check')->name('admin.manajemen');
-Route::get('/admin/stok', [AdminController::class, 'stok'])->middleware('auth.check')->name('admin.stok');
-Route::delete('/admin/user/{id}', [UserController::class, 'destroy'])->middleware('auth.check')->name('user.destroy');
+// Staff Gudang
+Route::middleware('auth.check')->prefix('kepala')->group(function () {
+
+    Route::get('/dashboard', fn () => view('kepala.dashboard'))
+        ->name('kepala.dashboard');
+
+    Route::get('/warehouse1', [MasukController::class, 'approval'])
+        ->name('warehouse1');
+
+    Route::get('/warehouse2', [KeluarController::class, 'warehouse2'])
+    ->name('warehouse2');
+
+    Route::get('/warehouse3', fn () => view('kepala.warehouse3'))
+        ->name('warehouse3');
+
+    Route::get('/warehouse4', fn () => view('kepala.warehouse4'))
+        ->name('warehouse4');
+});
 
 
+// kepala Gudang
+Route::middleware('auth.check')->group(function () {
 
-Route::get('/login', [UserController::class, 'showLoginForm'])->name('login.form');
-Route::post('/login', [UserController::class, 'login'])->name('login.store');
-Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+    Route::get('/barang-masuk/approval', [MasukController::class, 'approval'])
+        ->name('masuk.approval');
+    Route::put('/barang-masuk/{id}/setuju', [MasukController::class, 'approve'])
+        ->name('masuk.approve');
+    Route::put('/barang-masuk/{id}/tolak', [MasukController::class, 'reject'])
+        ->name('masuk.reject');
+    Route::get('/barang-keluar/approval', [KeluarController::class, 'list'])
+        ->name('keluar.approval');
+    Route::put('/barang-keluar/{id}/setuju', [KeluarController::class, 'approve'])
+        ->name('keluar.approve');
+    Route::put('/barang-keluar/{id}/tolak', [KeluarController::class, 'reject'])
+        ->name('keluar.reject');
+});
+
+
+// Admin
+Route::middleware('auth.check')->prefix('admin')->group(function () {
+
+    Route::get('/laporan', fn () => view('admin.laporan'))
+        ->name('admin.laporan');
+
+    Route::get('/manajemen', [UserController::class, 'index'])
+        ->name('admin.manajemen');
+
+    Route::get('/stok', [AdminController::class, 'stok'])
+        ->name('admin.stok');
+
+    Route::delete('/user/{id}', [UserController::class, 'destroy'])
+        ->name('user.destroy');
+});

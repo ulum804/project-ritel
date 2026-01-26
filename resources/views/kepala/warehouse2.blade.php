@@ -13,12 +13,12 @@
     <!-- TOP BAR -->
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
         <div class="container-fluid">
-            <button class="menu-toggle" onclick="toggleSidebar()">
+            {{-- <button class="menu-toggle" onclick="toggleSidebar()">
                 <i class="bi bi-list"></i>
-            </button>
+            </button> --}}
             <span class="navbar-brand mb-0">Leya Mart</span>
             <div class="warehouse-title text-white">
-                <span>Warehouse 2</span>
+                <span>Aproval Barang Keluar</span>
             </div>
             <span class="navbar-text text-white">
                 <i class="bi bi-person-circle"></i>
@@ -31,17 +31,17 @@
         <!-- SIDEBAR -->
         <div class="sidebar-custom" id="sidebar">
             <a href="{{ route('warehouse1') }}" class="sidebar-item">
-                <i class="bi bi-building"></i> Warehouse 1
+                <i class="bi bi-building"></i> Barang Masuk
             </a>
             <a href="{{ route('warehouse2') }}" class="sidebar-item active">
-                <i class="bi bi-building"></i> Warehouse 2
+                <i class="bi bi-building"></i> Barang Keluar
             </a>
-            <a href="{{ route('warehouse3') }}" class="sidebar-item">
+            {{-- <a href="{{ route('warehouse3') }}" class="sidebar-item">
                 <i class="bi bi-building"></i> Warehouse 3
             </a>
             <a href="{{ route('warehouse4') }}" class="sidebar-item">
                 <i class="bi bi-building"></i> Warehouse 4
-            </a>
+            </a> --}}
             <a href="{{'/'}}" class="sidebar-item">
                 <i class="bi bi-building"></i> Logout
             </a>
@@ -50,20 +50,20 @@
         <!-- CONTENT -->
         <div class="content">
             <!-- TAB NAVIGATION -->
-            <div class="nav-tabs-custom">
-                <a href="javascript:void(0)" class="tab-link active" onclick="showTab('purchase')">
+            {{-- <div class="nav-tabs-custom"> --}}
+                {{-- <a href="javascript:void(0)" class="tab-link active" onclick="showTab('purchase')">
                     Barang Masuk
                 </a>
                 <a href="javascript:void(0)" class="tab-link" onclick="showTab('sales')">
                     Barang Keluar
-                </a>
+                </a> --}}
                 {{-- <a href="javascript:void(0)" class="tab-link" onclick="showTab('move')">
                     Move Report
                 </a> --}}
-            </div>
+            {{-- </div> --}}
 
             <!-- PURCHASE REPORT TAB -->
-            <div id="purchase" class="tab-pane active">
+            {{-- <div id="purchase" class="tab-pane active">
                 <div class="card report-card">
                     <div class="card-body">
                         <div class="report-title">Barang Masuk</div>
@@ -127,10 +127,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             <!-- SALES REPORT TAB -->
-            <div id="sales" class="tab-pane">
+            {{-- <div id="sales" class="tab-pane"> --}}
                 <div class="card report-card">
                     <div class="card-body">
                         <div class="report-title">Barang Keluar</div>
@@ -138,63 +138,48 @@
                             <table class="table table-custom table-hover">
                                 <thead>
                                     <tr>
-                                        <th>ID Order</th>
-                                        <th>Product</th>
-                                        <th>Quantity</th>
-                                        <th>Activity</th>
-                                        <th>Total Status</th>
+                                        <th>ID barang</th>
+                                        <th>Nama Barang</th>
+                                        <th>Jumlah</th>
+                                        <th>Alasan</th>
+                                        <th>Tanggal keluar</th>
+                                        <th>Dari gudang</th>
+                                        <th>Gudang Tujuan</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                               <tbody>
+                                    @foreach ($keluars as $keluar)
                                     <tr>
-                                        <td>#KY9W</td>
-                                        <td>Minyak Sunmit 1ltr</td>
-                                        <td>10 pcs</td>
-                                        <td>Waiting for confirmation</td>
-                                        <td>Rp. 78,000.00</td>
+                                        <td>#{{ $keluar->barang->kode_barang }}</td>
+                                        <td>{{ $keluar->barang->nama_barang }}</td>
+                                        <td>{{ $keluar->qty_keluar }}</td>
+                                        <td>{{ $keluar->alasan ?? '-' }}</td>
+                                        <td>{{ $keluar->tanggal_keluar_in }}</td>
+                                        <td>{{ $keluar->gudang->nama_gudang}}</td>
+                                        <td>{{ $keluar->gudangTujuan->nama_gudang}}</td>
                                         <td>
-                                            <div class="btn-action-group">
-                                                <button class="btn btn-danger btn-small">TOLAK</button>
+                                            <form action="{{ route('keluar.approve',$keluar->id_barang_keluar) }}" method="POST" class="d-inline">
+                                                @csrf
+                                                @method('PUT')
                                                 <button class="btn btn-success btn-small">TERIMA</button>
-                                            </div>
+                                            </form>
+
+                                            <form action="{{ route('keluar.reject',$keluar->id_barang_keluar) }}" method="POST" class="d-inline">
+                                                @csrf
+                                                @method('PUT')
+                                                <button class="btn btn-danger btn-small">TOLAK</button>
+                                            </form>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>#EBG2</td>
-                                        <td>Cimory yogurt strawberry</td>
-                                        <td>25 pcs</td>
-                                        <td>Packaging & QC</td>
-                                        <td>Rp. 112,500.00</td>
-                                        <td>
-                                            <div class="btn-action-group">
-                                                <button class="btn btn-danger btn-small">TOLAK</button>
-                                                <button class="btn btn-success btn-small">TERIMA</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#TDH1</td>
-                                        <td>Gorilla coffee</td>
-                                        <td>5 pack</td>
-                                        <td>Delivery orders</td>
-                                        <td>Rp. 212,500.00</td>
-                                        <td>
-                                            <div class="btn-action-group">
-                                                <button class="btn btn-danger btn-small">TOLAK</button>
-                                                <button class="btn btn-success btn-small">TERIMA</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
+                                    @endforeach
+                                    </tbody>
+
                             </table>
-                        </div>
-                        <div class="date-info">
-                            DATE: 13 Januari 2025
                         </div>
                     </div>
                 </div>
-            </div>
+            {{-- </div> --}}
 
             <!-- MOVE REPORT TAB -->
             {{-- <div id="move" class="tab-pane">

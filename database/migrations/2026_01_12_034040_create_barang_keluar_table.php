@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('id_barang_keluar');
             $table->dateTime('tanggal_keluar_in');
             $table->integer('qty_keluar');
-            $table->decimal('harga_satuan', 10, 2)->nullable();
+            // $table->decimal('harga_satuan', 10, 2)->nullable();
             $table->string('alasan', 255)->nullable();
             $table->dateTime('tanggal_keluar_approve')->nullable();
             $table->enum('status_keluar', ['pending', 'setuju', 'tolak'])->default('pending');
