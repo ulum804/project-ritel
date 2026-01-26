@@ -55,22 +55,22 @@
 
         <!-- CONTENT -->
         <div class="content">
-            <div class="page-title">Laporan Semua Warehouse</div>
+            <div class="page-title">Laporan Aproval semua warehouse</div>
 
             <!-- WAREHOUSE TABS -->
             <div class="warehouse-tabs">
                 <button class="warehouse-tab active" onclick="switchWarehouse('wh1')">
-                    <i class="bi bi-building"></i> Warehouse 1
+                    <i class="bi bi-building"></i> Barang Masuk
                 </button>
                 <button class="warehouse-tab" onclick="switchWarehouse('wh2')">
-                    <i class="bi bi-building"></i> Warehouse 2
+                    <i class="bi bi-building"></i> Barang Keluar
                 </button>
-                <button class="warehouse-tab" onclick="switchWarehouse('wh3')">
+                {{-- <button class="warehouse-tab" onclick="switchWarehouse('wh3')">
                     <i class="bi bi-building"></i> Warehouse 3
                 </button>
                 <button class="warehouse-tab" onclick="switchWarehouse('wh4')">
                     <i class="bi bi-building"></i> Warehouse 4
-                </button>
+                </button> --}}
             </div>
 
             <!-- WAREHOUSE 1 CONTENT -->
@@ -78,193 +78,81 @@
                 <!-- PURCHASE REPORT -->
                 <div class="card report-card">
                     <div class="card-body" style="padding: 20px;">
-                        <div class="report-title">Pembelian Barang</div>
+                        <div class="report-title">Laporan aproval Barang Masuk</div>
                         <div class="table-responsive">
                             <table class="table table-custom table-hover">
                                 <thead>
                                     <tr>
-                                        <th>ID Order</th>
-                                        <th>Product</th>
-                                        <th>Quantity</th>
+                                        <th>Id barang</th>
+                                        <th>Nama Barang</th>
+                                        <th>Jumlah</th>
                                         <th>Alasan</th>
-                                        <th>Total Status</th>
+                                        <th>Tanggal Masuk</th>
+                                        <th>Tanggal aprove</th>
+                                        <th>Gudang </th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>#KY9W</td>
                                         <td>Minyak Sunmit 1ltr</td>
-                                        <td>4 pack</td>
-                                        <td>Waiting for confirmation</td>
-                                        <td>Rp. 867,000.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>#EBG2</td>
-                                        <td>Cimory yogurt strawberry</td>
-                                        <td>50 pcs</td>
-                                        <td>Delivery confirmation</td>
-                                        <td>Rp. 255,000.00</td>
+                                        <td>4 </td>
+                                        <td>Stok habis</td>
+                                        <td>12-01-2026</td>
+                                        <td>13-01-2026</td>
+                                        <td>Gudang utama</td>
+                                        <td>pending</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <div class="date-info">DATE: 13 Januari 2025</div>
-                    </div>
-                </div>
-
-                <!-- SALES REPORT -->
-                <div class="card report-card">
-                    <div class="card-body" style="padding: 20px;">
-                        <div class="report-title">Penjualan Barang</div>
-                        <div class="table-responsive">
-                            <table class="table table-custom table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>ID Order</th>
-                                        <th>Product</th>
-                                        <th>Quantity</th>
-                                        <th>Activity</th>
-                                        <th>Total Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>#KY9W</td>
-                                        <td>Minyak Sunmit 1ltr</td>
-                                        <td>10 pcs</td>
-                                        <td>Waiting for confirmation</td>
-                                        <td>Rp. 78,000.00</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="date-info">DATE: 13 Januari 2025</div>
-                    </div>
-                </div>
-
-                <!-- MOVE REPORT -->
-                <div class="card report-card">
-                    <div class="card-body" style="padding: 20px;">
-                        <div class="report-title">Barang Pindahan (Masuk)</div>
-                        <div class="table-responsive">
-                            <table class="table table-custom table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>ID Order</th>
-                                        <th>Product</th>
-                                        <th>Quantity</th>
-                                        <th>Activity</th>
-                                        <th>Total Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>#KY9W</td>
-                                        <td>Minyak Sunmit 1ltr</td>
-                                        <td>4 pack</td>
-                                        <td>Waiting for confirmation</td>
-                                        <td>Rp. 867,000.00</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="date-info">DATE: 13 Januari 2025<br>ASAL: Warehouse 2<br>TUJUAN: Warehouse 1</div>
-                    </div>
-                </div>
-
-                <div class="card report-card">
-                    <div class="card-body" style="padding: 20px;">
-                        <div class="report-title">Barang Dipindah (Keluar)</div>
-                        <div class="table-responsive">
-                            <table class="table table-custom table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>ID Order</th>
-                                        <th>Product</th>
-                                        <th>Quantity</th>
-                                        <th>Activity</th>
-                                        <th>Total Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>#KY9W</td>
-                                        <td>Minyak Sunmit 1ltr</td>
-                                        <td>4 pack</td>
-                                        <td>Waiting for confirmation</td>
-                                        <td>Rp. 867,000.00</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="date-info">DATE: 10 Januari 2025<br>ASAL: Warehouse 1<br>TUJUAN: Warehouse 3</div>
                     </div>
                 </div>
             </div>
 
             <!-- WAREHOUSE 2 CONTENT -->
             <div id="wh2" class="tab-content-pane">
-                <div class="card report-card">
-                    <div class="card-body" style="padding: 20px;">
-                        <div class="report-title">Pembelian Barang</div>
-                        <div class="table-responsive">
-                            <table class="table table-custom table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>ID Order</th>
-                                        <th>Product</th>
-                                        <th>Quantity</th>
-                                        <th>Alasan</th>
-                                        <th>Total Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>#WH2P001</td>
-                                        <td>Mie Instan Sedaap</td>
-                                        <td>100 pack</td>
-                                        <td>Stock replenishment</td>
-                                        <td>Rp. 550,000.00</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="date-info">DATE: 13 Januari 2025</div>
-                    </div>
-                </div>
 
                 <div class="card report-card">
                     <div class="card-body" style="padding: 20px;">
-                        <div class="report-title">Penjualan Barang</div>
+                        <div class="report-title">Laporan Aproval Barang Keluar</div>
                         <div class="table-responsive">
-                            <table class="table table-custom table-hover">
+                           <table class="table table-custom table-hover">
                                 <thead>
                                     <tr>
-                                        <th>ID Order</th>
-                                        <th>Product</th>
-                                        <th>Quantity</th>
-                                        <th>Activity</th>
-                                        <th>Total Status</th>
+                                        <th>Id barang</th>
+                                        <th>Nama Barang</th>
+                                        <th>Jumlah</th>
+                                        <th>Alasan</th>
+                                        <th>Tanggal Masuk</th>
+                                        <th>Tanggal aprove</th>
+                                        <th>Dari Gudang </th>
+                                        <th>Ke Gudang </th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>#WH2S001</td>
-                                        <td>Mie Instan Sedaap</td>
-                                        <td>30 pack</td>
-                                        <td>Ready to ship</td>
-                                        <td>Rp. 165,000.00</td>
+                                        <td>#KY9W</td>
+                                        <td>Minyak Sunmit 1ltr</td>
+                                        <td>4 </td>
+                                        <td>Stok habis</td>
+                                        <td>12-01-2026</td>
+                                        <td>13-01-2026</td>
+                                        <td>Gudang utama</td>
+                                        <td>Cabang 1</td>
+                                        <td>pending</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <div class="date-info">DATE: 13 Januari 2025</div>
                     </div>
                 </div>
             </div>
 
             <!-- WAREHOUSE 3 CONTENT -->
-            <div id="wh3" class="tab-content-pane">
+            {{-- <div id="wh3" class="tab-content-pane">
                 <div class="card report-card">
                     <div class="card-body" style="padding: 20px;">
                         <div class="report-title">Pembelian Barang</div>
@@ -325,7 +213,7 @@
                         <div class="date-info">DATE: 11 Januari 2025</div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 

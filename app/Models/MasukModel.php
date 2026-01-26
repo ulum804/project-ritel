@@ -31,4 +31,10 @@ class MasukModel extends Model
     {
         return $this->belongsTo(UserModel::class, 'id_user');
     }
+    public function barangMasukTerakhir()
+    {
+        return $this->hasOne(MasukModel::class, 'id_barang', 'id_barang')
+            ->where('status_masuk', 'setuju')
+            ->latest('tanggal_masuk_in');
+    }
 }

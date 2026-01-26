@@ -12,7 +12,7 @@ class BarangController extends Controller
 {
     public function index()
     {
-        $barangs = BarangModel::all();
+        $barangs = BarangModel::with('barangMasukTerakhir')->get();
         $gudangs = GudangModel::all();
   
         $stoks = StokModel::all()->keyBy(function ($stok) {

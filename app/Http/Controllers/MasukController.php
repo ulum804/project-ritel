@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\MasukModel;
 use App\Models\BarangModel;
 use App\Models\StokModel;
+use App\Models\KeluarModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class MasukController extends Controller
@@ -156,13 +158,35 @@ class MasukController extends Controller
     }
     public function reject($id)
     {
-        $masuk = MasukModel::findOrFail($id);
+        DB::transaction(function () use ($id) {
 
+        $masuk = MasukModel::with('barang')->findOrFail($id);
+
+        if ($masuk->status_masuk !== 'pending') {
+            abort(400, 'Data sudah diproses');
+        }
+
+        // Update status masuk
         $masuk->update([
             'status_masuk' => 'tolak',
-            'tanggal_masuk_approve' => now()
+            'tanggal_masuk_approve' => now(),
         ]);
 
-        return back()->with('success', 'Barang masuk ditolak');
+        $barang = $masuk->barang;
+
+        // Cek apakah barang aman untuk dihapus
+        $stokAda = StokModel::where('id_barang', $barang->id_barang)->exists();
+        $keluarAda = KeluarModel::where('id_barang', $barang->id_barang)->exists();
+        $masukLain = MasukModel::where('id_barang', $barang->id_barang)
+            ->where('id_barang_masuk', '!=', $masuk->id_barang_masuk)
+            ->exists();
+
+        if (!$stokAda && !$keluarAda && !$masukLain) {
+            $masuk->delete();
+            $barang->delete();
+        }
+    });
+
+    return back()->with('success', 'Barang masuk ditolak & barang dihapus');
     }
 }
