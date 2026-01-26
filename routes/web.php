@@ -77,8 +77,8 @@ Route::middleware('auth.check')->group(function () {
 // Admin
 Route::middleware('auth.check')->prefix('admin')->group(function () {
 
-    Route::get('/laporan', fn () => view('admin.laporan'))
-        ->name('admin.laporan');
+    Route::get('/laporan', [AdminController::class, 'laporan'])
+    ->name('admin.laporan');
 
     Route::get('/manajemen', [UserController::class, 'index'])
         ->name('admin.manajemen');

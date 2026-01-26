@@ -189,4 +189,5 @@ class MasukController extends Controller
 
     return back()->with('success', 'Barang masuk ditolak & barang dihapus');
     }
+    
 }

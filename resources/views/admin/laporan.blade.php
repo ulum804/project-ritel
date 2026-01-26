@@ -93,18 +93,31 @@
                                         <th>Status</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                               <tbody>
+                                    @forelse ($masuks as $masuk)
                                     <tr>
-                                        <td>#KY9W</td>
-                                        <td>Minyak Sunmit 1ltr</td>
-                                        <td>4 </td>
-                                        <td>Stok habis</td>
-                                        <td>12-01-2026</td>
-                                        <td>13-01-2026</td>
-                                        <td>Gudang utama</td>
-                                        <td>pending</td>
+                                        <td>#{{ $masuk->barang->kode_barang ?? '-' }}</td>
+                                        <td>{{ $masuk->barang->nama_barang ?? '-' }}</td>
+                                        <td>{{ $masuk->Qty_masuk }}</td>
+                                        <td>{{ $masuk->alasan ?? '-' }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($masuk->tanggal_masuk_in)->format('d-m-Y') }}</td>
+                                        <td>
+                                            {{ $masuk->tanggal_masuk_approve
+                                                ? \Carbon\Carbon::parse($masuk->tanggal_masuk_approve)->format('d-m-Y')
+                                                : '-' }}
+                                        </td>
+                                        <td>{{ $masuk->gudang->nama_gudang ?? '-' }}</td>
+                                        <td>{{ $masuk->status_masuk }}</td>
                                     </tr>
+                                    @empty
+                                    <tr>
+                                        <td colspan="8" class="text-center text-muted">
+                                            Tidak ada data approval
+                                        </td>
+                                    </tr>
+                                    @endforelse
                                 </tbody>
+
                             </table>
                         </div>
                     </div>
@@ -132,18 +145,30 @@
                                         <th>Status</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                 <tbody>
+                                    @forelse ($keluars as $keluar)
                                     <tr>
-                                        <td>#KY9W</td>
-                                        <td>Minyak Sunmit 1ltr</td>
-                                        <td>4 </td>
-                                        <td>Stok habis</td>
-                                        <td>12-01-2026</td>
-                                        <td>13-01-2026</td>
-                                        <td>Gudang utama</td>
-                                        <td>Cabang 1</td>
-                                        <td>pending</td>
+                                        <td>#{{ $keluar->barang->kode_barang ?? '-' }}</td>
+                                        <td>{{ $keluar->barang->nama_barang ?? '-' }}</td>
+                                        <td>{{ $keluar->qty_keluar }}</td>
+                                        <td>{{ $keluar->alasan ?? '-' }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($keluar->tanggal_keluar_in)->format('d-m-Y') }}</td>
+                                        <td>
+                                            {{ $keluar->tanggal_keluar_approve
+                                                ? \Carbon\Carbon::parse($keluar->tanggal_keluar_approve)->format('d-m-Y')
+                                                : '-' }}
+                                        </td>
+                                        <td>{{ $keluar->gudang->nama_gudang ?? '-' }}</td>
+                                        <td>{{ $keluar->gudangTujuan->nama_gudang }}</td>
+                                        <td>{{ $keluar->status_keluar }}</td>
                                     </tr>
+                                    @empty
+                                    <tr>
+                                        <td colspan="8" class="text-center text-muted">
+                                            Tidak ada data approval
+                                        </td>
+                                    </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
