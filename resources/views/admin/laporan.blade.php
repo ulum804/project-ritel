@@ -155,8 +155,7 @@
                                         <td>{{ \Carbon\Carbon::parse($keluar->tanggal_keluar_in)->format('d-m-Y') }}</td>
                                         <td>
                                             {{ $keluar->tanggal_keluar_approve
-                                                ? \Carbon\Carbon::parse($keluar->tanggal_keluar_approve)->format('d-m-Y')
-                                                : '-' }}
+                                                ? \Carbon\Carbon::parse($keluar->tanggal_keluar_approve)->format('d-m-Y'): '-' }}
                                         </td>
                                         <td>{{ $keluar->gudang->nama_gudang ?? '-' }}</td>
                                         <td>{{ $keluar->gudangTujuan->nama_gudang }}</td>

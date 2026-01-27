@@ -10,7 +10,7 @@ class KeluarModel extends Model
     protected $primaryKey = 'id_barang_keluar';
     protected $fillable = [
         'tanggal_keluar_in',
-        'tanggal_approve_out',
+        'tanggal_keluar_approve',
         'qty_keluar',
         'alasan',
         'harga_satuan',

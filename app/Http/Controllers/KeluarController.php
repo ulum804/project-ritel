@@ -61,7 +61,7 @@ class KeluarController extends Controller
             'id_user' => $validated['id_user'],
         ]);
 
-        return back()->with('success', 'Menunggu persetujuan admin');
+        return back()->with('success', 'Menunggu persetujuan Kepala Gudang');
         // Debug: log request data
         // Log::info('Barang Keluar Request:', $request->all());
 

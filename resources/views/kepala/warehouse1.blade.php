@@ -71,7 +71,7 @@
                             <table class="table table-custom table-hover">
                                 <thead>
                                     <tr>
-                                        {{-- <th>Nama Reseller</th> --}}
+                                        <th>Nama Reseller</th>
                                         <th>ID barang</th>
                                         <th>Nama Barang</th>
                                         <th>Jumlah</th>
@@ -83,7 +83,7 @@
                                 <tbody>
                                     @foreach ($masuks as $masuk)
                                     <tr>
-                                        {{-- <td>{{ $masuk->barang_masuk->nama_reseller ?? '-'}}</td> --}}
+                                        <td>{{ $masuk->barang_masuk->nama_reseller ?? '-'}}</td>
                                         <td>#{{ $masuk->barang->kode_barang }}</td>
                                         <td>{{ $masuk->barang->nama_barang }}</td>
                                         <td>{{ $masuk->Qty_masuk }}</td>
