@@ -119,9 +119,8 @@ class MasukController extends Controller
     }
     public function destroy($id)
     {
-        $masuk = MasukModel::findOrFail($id);
-        $masuk->delete();
-        return response()->json(['message' => 'Data barang masuk sudah terhapus']);
+        MasukModel::where('id_barang_masuk', $id)->delete();
+        return back()->with('success', 'data berhasil dihapus');
     }
     public function approval()
     {

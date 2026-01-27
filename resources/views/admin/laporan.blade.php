@@ -91,6 +91,7 @@
                                         <th>Tanggal aprove</th>
                                         <th>Gudang </th>
                                         <th>Status</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                <tbody>
@@ -108,6 +109,15 @@
                                         </td>
                                         <td>{{ $masuk->gudang->nama_gudang ?? '-' }}</td>
                                         <td>{{ $masuk->status_masuk }}</td>
+                                         <td>
+                                            <form action="{{ route('masuk.destroy', $masuk->id_barang_masuk) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn-standard bg-danger text-white">
+                                                    Hapus
+                                                </button>
+                                            </form>
+                                        </td>
                                     </tr>
                                     @empty
                                     <tr>
@@ -143,6 +153,7 @@
                                         <th>Dari Gudang </th>
                                         <th>Ke Gudang </th>
                                         <th>Status</th>
+                                        <th >Aksi</th>
                                     </tr>
                                 </thead>
                                  <tbody>
@@ -160,6 +171,16 @@
                                         <td>{{ $keluar->gudang->nama_gudang ?? '-' }}</td>
                                         <td>{{ $keluar->gudangTujuan->nama_gudang }}</td>
                                         <td>{{ $keluar->status_keluar }}</td>
+                                        <td>
+                                            <form action="{{ route('keluar.destroy', $keluar->id_barang_keluar) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn-standard bg-danger text-white">
+                                                    Hapus
+                                                </button>
+                                            </form>
+                                        </td>
+                                        
                                     </tr>
                                     @empty
                                     <tr>

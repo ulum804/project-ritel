@@ -126,9 +126,11 @@ class KeluarController extends Controller
     }
     public function destroy($id)
     {
-        $keluar = KeluarModel::findOrFail($id);
-        $keluar->delete();
-        return response()->json(['message' => 'Data barang keluar sudah terhapus']);
+        // $keluar = KeluarModel::findOrFail($id);
+        // $keluar->delete();
+        // return response()->json(['message' => 'Data barang keluar sudah terhapus']);
+        KeluarModel::where('id_barang_keluar', $id)->delete();
+        return back()->with('success', 'data berhasil dihapus');
     }
     public function approve($id)
     {

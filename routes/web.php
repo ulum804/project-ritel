@@ -8,7 +8,7 @@ use App\Http\Controllers\KeluarController;
 
 
 // AUTH & PUBLIC
-Route::get('/', fn () => view('login.login'));
+Route::get('/', fn() => view('login.login'));
 
 Route::get('/login', [UserController::class, 'showLoginForm'])->name('login.form');
 Route::post('/login', [UserController::class, 'login'])->name('login.store');
@@ -21,7 +21,7 @@ Route::post('/register', [UserController::class, 'store'])->name('register.store
 // Staff
 Route::middleware('auth.check')->group(function () {
 
-    Route::get('/staff/dashboard', fn () => view('staff.dashboard'));
+    Route::get('/staff/dashboard', fn() => view('staff.dashboard'));
 
     Route::get('/staff/utama', [KeluarController::class, 'create'])->name('staff.utama');
     Route::get('/staff/cabang2', [KeluarController::class, 'create'])->name('staff.cabang2');
@@ -39,19 +39,19 @@ Route::middleware('auth.check')->group(function () {
 // Staff Gudang
 Route::middleware('auth.check')->prefix('kepala')->group(function () {
 
-    Route::get('/dashboard', fn () => view('kepala.dashboard'))
+    Route::get('/dashboard', fn() => view('kepala.dashboard'))
         ->name('kepala.dashboard');
 
     Route::get('/warehouse1', [MasukController::class, 'approval'])
         ->name('warehouse1');
 
     Route::get('/warehouse2', [KeluarController::class, 'warehouse2'])
-    ->name('warehouse2');
+        ->name('warehouse2');
 
-    Route::get('/warehouse3', fn () => view('kepala.warehouse3'))
+    Route::get('/warehouse3', fn() => view('kepala.warehouse3'))
         ->name('warehouse3');
 
-    Route::get('/warehouse4', fn () => view('kepala.warehouse4'))
+    Route::get('/warehouse4', fn() => view('kepala.warehouse4'))
         ->name('warehouse4');
 });
 
@@ -78,7 +78,11 @@ Route::middleware('auth.check')->group(function () {
 Route::middleware('auth.check')->prefix('admin')->group(function () {
 
     Route::get('/laporan', [AdminController::class, 'laporan'])
-    ->name('admin.laporan');
+        ->name('admin.laporan');
+    Route::delete('/keluar/{id}', [KeluarController::class, 'destroy'])
+        ->name('keluar.destroy');
+    Route::delete('/masuk/{id}', [MasukController::class, 'destroy'])
+        ->name('masuk.destroy');
 
     Route::get('/manajemen', [UserController::class, 'index'])
         ->name('admin.manajemen');
