@@ -83,6 +83,7 @@
                             <table class="table table-custom table-hover">
                                 <thead>
                                     <tr>
+                                        <th>Nama Reseller</th>
                                         <th>Id barang</th>
                                         <th>Nama Barang</th>
                                         <th>Jumlah</th>
@@ -97,6 +98,7 @@
                                <tbody>
                                     @forelse ($masuks as $masuk)
                                     <tr>
+                                        <td>{{ $masuk->nama_reseller }}</td>
                                         <td>#{{ $masuk->barang->kode_barang ?? '-' }}</td>
                                         <td>{{ $masuk->barang->nama_barang ?? '-' }}</td>
                                         <td>{{ $masuk->Qty_masuk }}</td>

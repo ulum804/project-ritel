@@ -83,7 +83,7 @@
                                 <tbody>
                                     @foreach ($masuks as $masuk)
                                     <tr>
-                                        <td>{{ $masuk->barang_masuk->nama_reseller ?? '-'}}</td>
+                                        <td>{{ $masuk->nama_reseller }}</td>
                                         <td>#{{ $masuk->barang->kode_barang }}</td>
                                         <td>{{ $masuk->barang->nama_barang }}</td>
                                         <td>{{ $masuk->Qty_masuk }}</td>

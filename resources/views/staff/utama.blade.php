@@ -83,7 +83,7 @@
                         <table class="table table-custom table-hover">
                             <thead>
                                 <tr>
-                                    {{-- <th>Reseller</th> --}}
+                                    <th>Reseller</th>
                                     <th>Produk</th>
                                     <th>kode</th>
                                     @foreach($gudangs as $gudang)
@@ -95,6 +95,12 @@
                                 @forelse($barangs as $barang)
                                     <tr>
                                         {{-- <td>{{ $barang->barangMasukTerakhir->nama_reseller ?? '-' }}</td> --}}
+                                        <td>
+                                            @foreach($barang->barangMasuk as $masuk)
+                                                {{ $masuk->nama_reseller }}@if(!$loop->last), @endif
+                                            @endforeach
+                                        </td>
+
                                         <td>{{ $barang->nama_barang }}</td>
                                         <td>{{ $barang->kode_barang }}</td>
                                         @foreach($gudangs as $gudang)
