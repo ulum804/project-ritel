@@ -25,9 +25,9 @@
         <span>Gudang cabang 2</span>
     </div>
 
-    <span class="user-profile">
+    <!-- <span class="user-profile">
         <i class="fas fa-user-circle"></i>
-    </span>
+    </span> -->
 </nav>
 
 <!-- MAIN CONTAINER -->

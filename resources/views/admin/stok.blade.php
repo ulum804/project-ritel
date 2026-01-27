@@ -29,9 +29,9 @@
             <span>Stok Gudang</span>
         </div>
 
-        <span class="navbar-text text-white">
+        <!-- <span class="navbar-text text-white">
             <i class="bi bi-person-circle"></i>
-        </span>
+        </span> -->
     </div>
 </nav>
 

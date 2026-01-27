@@ -20,9 +20,9 @@
             <div class="warehouse-title text-white">
                 <span>Laporan</span>
             </div>
-            <span class="navbar-text text-white">
+            <!-- <span class="navbar-text text-white">
                 <i class="bi bi-person-circle"></i>
-            </span>
+            </span> -->
         </div>
     </nav>
 <!-- MAIN CONTAINER -->
@@ -48,7 +48,7 @@
 
                 <!-- LOGOUT -->
               <a href="{{'/'}}" class="sidebar-item">
-                <i class="bi bi-building"></i> Logout
+                <i class="bi bi-box-arrow-right"></i> Logout
             </a>
             </div>
         </div>
